@@ -210,7 +210,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -308,6 +308,10 @@ MonoBehaviour:
   - {fileID: 5411826071879078752, guid: 0a91bb6b2a1a626438387415ab97c7c6, type: 3}
   - {fileID: 6217008969890670258, guid: 135b66ab9c31d3949902da905635cf9d, type: 3}
   - {fileID: 7372470658498553075, guid: 623589db1fa4e09479c54d0185ab1f26, type: 3}
+  capRoom: []
+  closedRoom: {fileID: 0}
+  MAX_ROOMS: 20
+  ROOM_COUNT: 0
 --- !u!4 &697591410
 Transform:
   m_ObjectHideFlags: 0
