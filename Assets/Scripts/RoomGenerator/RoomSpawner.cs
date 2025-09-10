@@ -20,55 +20,60 @@ public class RoomSpawner : MonoBehaviour
         Debug.Log("RoomSpawner started at " + transform.position + " with openingDirection " + openingDirection);
 
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
-        Invoke("Spawn", 0.1f);
-
+        //Invoke("Spawn", 0.2f);
+        Spawn();
     }
 
     void Spawn()
     {
+        if (spawned) return;
+
+        if (templates.ROOM_COUNT >= templates.MAX_ROOMS)
+        {
+            Instantiate(templates.closedRoom, transform.position, Quaternion.identity);
+            spawned = true;
+            return;
+        }
+
         if (spawned == false)
         {
             Debug.Log("Spawning room at: " + transform.position + " with opening direction: " + openingDirection);
 
+            GameObject newRoom = null;
+
             if (openingDirection == 1)
             {
-                // Need to spawn a room with a TOP door (so it connects to the bottom of the previous room)
                 rand = Random.Range(0, templates.topRooms.Length);
-                Instantiate(templates.topRooms[rand], transform.position, templates.topRooms[rand].transform.rotation);
+                newRoom = Instantiate(templates.topRooms[rand], transform.position, templates.topRooms[rand].transform.rotation);
             }
             else if (openingDirection == 2)
             {
-                // Need to spawn a room with a BOTTOM door
                 rand = Random.Range(0, templates.bottomRooms.Length);
-                Instantiate(templates.bottomRooms[rand], transform.position, templates.bottomRooms[rand].transform.rotation);
+                newRoom = Instantiate(templates.bottomRooms[rand], transform.position, templates.bottomRooms[rand].transform.rotation);
             }
             else if (openingDirection == 3)
             {
-                // Need to spawn a room with a RIGHT door
                 rand = Random.Range(0, templates.rightRooms.Length);
-                Instantiate(templates.rightRooms[rand], transform.position, templates.rightRooms[rand].transform.rotation);
+                newRoom = Instantiate(templates.rightRooms[rand], transform.position, templates.rightRooms[rand].transform.rotation);
             }
             else if (openingDirection == 4)
             {
-                // Need to spawn a room with a LEFT door
                 rand = Random.Range(0, templates.leftRooms.Length);
-                Instantiate(templates.leftRooms[rand], transform.position, templates.leftRooms[rand].transform.rotation);
+                newRoom = Instantiate(templates.leftRooms[rand], transform.position, templates.leftRooms[rand].transform.rotation);
             }
+
+            if (newRoom != null)
+            {
+                Debug.Log("Spawned new room: " + newRoom.name + " with children: " + newRoom.transform.childCount);
+                foreach (Transform child in newRoom.transform)
+                {
+                    Debug.Log("Child: " + child.name + " | Active: " + child.gameObject.activeSelf);
+                }
+            }
+            templates.ROOM_COUNT++;
             spawned = true;
         }
     }
-
-    // void OnTriggerEnter2D(Collider2D other)
-    // {
-    //     if (other.CompareTag("SpawnPoint"))
-    //     {
-    //         if (other.GetComponent<RoomSpawner>().spawned && !spawned)
-    //         {
-    //             // The other spawn point already spawned a room here, so destroy this one
-    //             Destroy(gameObject);
-    //         }
-    //     }
-    // }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -77,10 +82,11 @@ public class RoomSpawner : MonoBehaviour
             RoomSpawner otherSpawner = other.GetComponent<RoomSpawner>();
             if (otherSpawner != null && otherSpawner.spawned && !spawned)
             {
-                // The other spawn point already spawned a room here, so destroy this one
-                Destroy(gameObject);
+                Destroy(gameObject, 0.1f);
             }
         }
+
     }
+
 
 }
