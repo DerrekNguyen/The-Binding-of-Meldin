@@ -18,7 +18,7 @@ public class RoomSpawner : MonoBehaviour
     {
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         templates.occupiedPositions.Add(transform.position);
-        Invoke("Spawn", 0.1f);
+        Invoke("Spawn", 0.2f);
     }
 
     void Spawn()
@@ -40,21 +40,29 @@ public class RoomSpawner : MonoBehaviour
             {
                 rand = Random.Range(0, templates.topRooms.Length);
                 room = Instantiate(templates.topRooms[rand], transform.position, templates.topRooms[rand].transform.rotation);
+
+                RemoveOppositeSpawn(room, 2);
             }
             else if (openingDirection == 2)
             {
                 rand = Random.Range(0, templates.bottomRooms.Length);
                 room = Instantiate(templates.bottomRooms[rand], transform.position, templates.bottomRooms[rand].transform.rotation);
+
+                RemoveOppositeSpawn(room, 1);
             }
             else if (openingDirection == 3)
             {
                 rand = Random.Range(0, templates.rightRooms.Length);
                 room = Instantiate(templates.rightRooms[rand], transform.position, templates.rightRooms[rand].transform.rotation);
+
+                RemoveOppositeSpawn(room, 4);
             }
             else if (openingDirection == 4)
             {
                 rand = Random.Range(0, templates.leftRooms.Length);
                 room = Instantiate(templates.leftRooms[rand], transform.position, templates.leftRooms[rand].transform.rotation);
+
+                RemoveOppositeSpawn(room, 3);
             }
 
             if (room != null)
@@ -73,6 +81,11 @@ public class RoomSpawner : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.CompareTag("SpawnRoom"))
+        {
+            Destroy(gameObject);
+        }
+
         if (other.CompareTag("SpawnPoint"))
         {
             RoomSpawner otherSpawner = other.GetComponent<RoomSpawner>();
@@ -98,6 +111,19 @@ public class RoomSpawner : MonoBehaviour
             }
         }
         return false;
+    }
+
+    void RemoveOppositeSpawn(GameObject room, int direction)
+    {
+        RoomSpawner[] spawners = room.GetComponentsInChildren<RoomSpawner>();
+        foreach (RoomSpawner spawner in spawners)
+        {
+            if (spawner.openingDirection == direction)
+            {
+                Destroy(spawner.gameObject);
+                return;
+            }
+        }
     }
 }
 
