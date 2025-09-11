@@ -6,73 +6,69 @@ public class RoomSpawner : MonoBehaviour
 {
     public int openingDirection;
     // 1--> need bottom door
-    // 2--> need top door
+    // 2--> need top door       
     // 3--> need left door
     // 4--> need right door
 
     private RoomTemplates templates;
     private int rand;
-    [SerializeField]
     private bool spawned = false;
 
     void Start()
     {
-        Debug.Log("RoomSpawner started at " + transform.position + " with openingDirection " + openingDirection);
-
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
-        //Invoke("Spawn", 0.2f);
-        Spawn();
+        templates.occupiedPositions.Add(transform.position);
+        Invoke("Spawn", 0.1f);
     }
 
     void Spawn()
     {
         if (spawned) return;
 
-        if (templates.ROOM_COUNT >= templates.MAX_ROOMS)
+        if (IsInsideOccupiedRoom(transform.position))
         {
-            Instantiate(templates.closedRoom, transform.position, Quaternion.identity);
+            Destroy(gameObject);
             spawned = true;
             return;
         }
+        GameObject room = null;
 
-        if (spawned == false)
+        // If we have room left to spawn
+        if (templates.ROOM_COUNT < templates.MAX_ROOMS)
         {
-            Debug.Log("Spawning room at: " + transform.position + " with opening direction: " + openingDirection);
-
-            GameObject newRoom = null;
-
             if (openingDirection == 1)
             {
                 rand = Random.Range(0, templates.topRooms.Length);
-                newRoom = Instantiate(templates.topRooms[rand], transform.position, templates.topRooms[rand].transform.rotation);
+                room = Instantiate(templates.topRooms[rand], transform.position, templates.topRooms[rand].transform.rotation);
             }
             else if (openingDirection == 2)
             {
                 rand = Random.Range(0, templates.bottomRooms.Length);
-                newRoom = Instantiate(templates.bottomRooms[rand], transform.position, templates.bottomRooms[rand].transform.rotation);
+                room = Instantiate(templates.bottomRooms[rand], transform.position, templates.bottomRooms[rand].transform.rotation);
             }
             else if (openingDirection == 3)
             {
                 rand = Random.Range(0, templates.rightRooms.Length);
-                newRoom = Instantiate(templates.rightRooms[rand], transform.position, templates.rightRooms[rand].transform.rotation);
+                room = Instantiate(templates.rightRooms[rand], transform.position, templates.rightRooms[rand].transform.rotation);
             }
             else if (openingDirection == 4)
             {
                 rand = Random.Range(0, templates.leftRooms.Length);
-                newRoom = Instantiate(templates.leftRooms[rand], transform.position, templates.leftRooms[rand].transform.rotation);
+                room = Instantiate(templates.leftRooms[rand], transform.position, templates.leftRooms[rand].transform.rotation);
             }
 
-            if (newRoom != null)
+            if (room != null)
             {
-                Debug.Log("Spawned new room: " + newRoom.name + " with children: " + newRoom.transform.childCount);
-                foreach (Transform child in newRoom.transform)
-                {
-                    Debug.Log("Child: " + child.name + " | Active: " + child.gameObject.activeSelf);
-                }
+                templates.ROOM_COUNT++; // Only count real rooms
             }
-            templates.ROOM_COUNT++;
-            spawned = true;
         }
+        else
+        {
+            // Cap if we've hit the limit
+            Instantiate(templates.closedRoom, transform.position, Quaternion.identity);
+        }
+
+        spawned = true;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -80,13 +76,28 @@ public class RoomSpawner : MonoBehaviour
         if (other.CompareTag("SpawnPoint"))
         {
             RoomSpawner otherSpawner = other.GetComponent<RoomSpawner>();
-            if (otherSpawner != null && otherSpawner.spawned && !spawned)
-            {
-                Destroy(gameObject, 0.1f);
-            }
-        }
 
+            if (!spawned && !otherSpawner.spawned)
+            {
+                // If two unspawned spawners meet, place a cap
+                Instantiate(templates.closedRoom, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
+
+            spawned = true;
+        }
     }
 
-
+    bool IsInsideOccupiedRoom(Vector3 position)
+    {
+        foreach (Bounds occupied in templates.occupiedRooms)
+        {
+            if (occupied.Contains(position))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
+

@@ -14,4 +14,6 @@ public class RoomTemplates : MonoBehaviour
     public int MAX_ROOMS = 20;
     public int ROOM_COUNT = 0;
 
+    public List<Vector3> occupiedPositions = new List<Vector3>();
+    public List<Bounds> occupiedRooms = new List<Bounds>();
 }
