@@ -310,7 +310,11 @@ MonoBehaviour:
   - {fileID: 7372470658498553075, guid: 623589db1fa4e09479c54d0185ab1f26, type: 3}
   capRoom:
   - {fileID: 3747947897225870371, guid: 1cd88c7bd88222d4a8782c5e2acbaa30, type: 3}
-  closedRoom: {fileID: 0}
+  closedRoom: {fileID: 3747947897225870371, guid: 1cd88c7bd88222d4a8782c5e2acbaa30, type: 3}
+  rooms: []
+  waitTime: 0
+  spawnedBoss: 0
+  boss: {fileID: 0}
   MAX_ROOMS: 20
   ROOM_COUNT: 0
   occupiedPositions: []
