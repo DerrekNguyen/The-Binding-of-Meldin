@@ -20,6 +20,7 @@ public class RoomSpawner : MonoBehaviour
     {
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         Invoke("Spawn", 0.1f);
+        Invoke("CloseRemainingSpawners", 4f); // Close any remaining spawners after a delay
     }
 
     void Spawn()
@@ -136,6 +137,20 @@ public class RoomSpawner : MonoBehaviour
                (dir1 == 2 && dir2 == 1) ||
                (dir1 == 3 && dir2 == 4) ||
                (dir1 == 4 && dir2 == 3);
+    }
+
+    public void CloseRemainingSpawners()
+    {
+        foreach (RoomSpawner spawner in FindObjectsOfType<RoomSpawner>())
+        {
+            if (!spawner.spawned)
+            {
+                Instantiate(templates.closedRoom, spawner.transform.position, Quaternion.identity);
+                Debug.Log("Closed remaining spawner at " + spawner.transform.position);
+                Destroy(spawner.gameObject);
+                spawner.spawned = true;
+            }
+        }
     }
 }
 
