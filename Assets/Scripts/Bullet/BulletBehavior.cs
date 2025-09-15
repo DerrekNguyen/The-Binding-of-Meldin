@@ -53,6 +53,10 @@ public class BulletBehavior : MonoBehaviour
         {
             // Destroy the bullet if it hits a wall
             Destroy(this.gameObject);
+        } else if (collision.CompareTag("Enemy"))
+        {
+            // Destroy the bullet if it hits an enemy
+            Destroy(this.gameObject);
         }
     }
 }
