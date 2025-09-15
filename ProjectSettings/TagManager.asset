@@ -11,6 +11,8 @@ TagManager:
   - Rooms
   - StartRoom
   - Boss
+  - Enemy
+  - Bullet
   layers:
   - Default
   - TransparentFX
