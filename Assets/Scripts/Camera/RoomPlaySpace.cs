@@ -10,7 +10,7 @@ public class RoomPlaySpace : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            CameraController.instance.MoveToRoom(roomCenter.position);
+            // CameraController.instance.MoveToRoom(roomCenter.position);
         }
     }
 }
