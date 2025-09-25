@@ -53,3 +53,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: shadow
+    uniqueID: 3680131171
+    locked: 0
+  - name: Bat
+    uniqueID: 1813670771
+    locked: 0
+  - name: button
+    uniqueID: 3922299193
+    locked: 0
