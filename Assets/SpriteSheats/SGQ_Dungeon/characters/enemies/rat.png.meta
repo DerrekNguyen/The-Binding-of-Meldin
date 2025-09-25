@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,10 +100,10 @@ TextureImporter:
       name: rat_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 82
-        width: 13
-        height: 11
+        x: 0
+        y: 80
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,10 +121,10 @@ TextureImporter:
       name: rat_1
       rect:
         serializedVersion: 2
-        x: 18
-        y: 82
-        width: 12
-        height: 12
+        x: 16
+        y: 80
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,7 +132,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 68fe1ed2f6f5f484887b0cc046a656e6
+      spriteID: a89d34257ce05124d92b96ce34788d72
       internalID: 611303429
       vertices: []
       indices: 
@@ -142,10 +142,10 @@ TextureImporter:
       name: rat_2
       rect:
         serializedVersion: 2
-        x: 2
-        y: 66
-        width: 13
-        height: 11
+        x: 0
+        y: 64
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,7 +153,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f1f67348c0f09643ad1dfdae312469f
+      spriteID: c4a40e4a9a0f2f740b1572f9676098a1
       internalID: -2033165989
       vertices: []
       indices: 
@@ -163,10 +163,10 @@ TextureImporter:
       name: rat_3
       rect:
         serializedVersion: 2
-        x: 18
-        y: 66
-        width: 12
-        height: 12
+        x: 16
+        y: 64
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,7 +174,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ba56b16f7ed9094f9636457b6d2c72d
+      spriteID: ed8d1ffdf2bd71546ad708229662dd56
       internalID: -554186241
       vertices: []
       indices: 
@@ -184,10 +184,10 @@ TextureImporter:
       name: rat_4
       rect:
         serializedVersion: 2
-        x: 1
-        y: 50
-        width: 13
-        height: 11
+        x: 0
+        y: 48
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,7 +195,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0809c4c58502e841a5a63dd438a0422
+      spriteID: 8dd2f774f8aa39e49bb71cfb1a9042e4
       internalID: -184457385
       vertices: []
       indices: 
@@ -205,10 +205,10 @@ TextureImporter:
       name: rat_5
       rect:
         serializedVersion: 2
-        x: 18
-        y: 52
-        width: 12
-        height: 12
+        x: 16
+        y: 48
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,7 +216,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c1e8692d608d5e42840414730cac13f
+      spriteID: 10c87076479524b41a7c23a5b39410a4
       internalID: 1714980657
       vertices: []
       indices: 
@@ -226,10 +226,10 @@ TextureImporter:
       name: rat_6
       rect:
         serializedVersion: 2
-        x: 35
-        y: 50
-        width: 11
-        height: 13
+        x: 32
+        y: 48
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,7 +237,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa731d6ad86bfb240b61956889fa86b2
+      spriteID: bb6af86bd0c728b4394445a6ddc3b745
       internalID: 2034331638
       vertices: []
       indices: 
@@ -247,10 +247,10 @@ TextureImporter:
       name: rat_7
       rect:
         serializedVersion: 2
-        x: 2
-        y: 34
-        width: 13
-        height: 11
+        x: 0
+        y: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -258,7 +258,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 252b9159b554696488a6be1b3b5194d8
+      spriteID: 5d1b30885cc24d041b8cb0eb0de3df43
       internalID: -569405438
       vertices: []
       indices: 
@@ -268,10 +268,10 @@ TextureImporter:
       name: rat_8
       rect:
         serializedVersion: 2
-        x: 18
-        y: 36
-        width: 12
-        height: 12
+        x: 16
+        y: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -279,7 +279,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99919b2a186c7674599ed48bc61160f1
+      spriteID: edba695a150a92d4ba5d4da670775839
       internalID: -237020927
       vertices: []
       indices: 
@@ -289,10 +289,10 @@ TextureImporter:
       name: rat_9
       rect:
         serializedVersion: 2
-        x: 34
-        y: 34
-        width: 11
-        height: 13
+        x: 32
+        y: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -300,7 +300,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 418cc22027e61a6448e63fc238cdbf6d
+      spriteID: 7b7c2c32ec35cbf49bd88a8ffe1ff5aa
       internalID: -1172979023
       vertices: []
       indices: 
@@ -310,10 +310,10 @@ TextureImporter:
       name: rat_10
       rect:
         serializedVersion: 2
-        x: 1
-        y: 18
-        width: 13
-        height: 11
+        x: 0
+        y: 16
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -321,7 +321,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b599050f7d8c504b874f33daceae415
+      spriteID: 011bc09e017f113409a7626757f6fcd1
       internalID: -68511575
       vertices: []
       indices: 
@@ -332,9 +332,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 16
-        y: 18
-        width: 15
-        height: 10
+        y: 16
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -342,7 +342,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72f420ae9994f5c43ad1ded414277727
+      spriteID: f20fd094dbc075b43a49e76d3132610e
       internalID: 389803972
       vertices: []
       indices: 
@@ -353,9 +353,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 18
+        y: 16
         width: 16
-        height: 9
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -363,7 +363,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 551c12027965faa498adc0c49aad3215
+      spriteID: fd3f73c13168bb94ebca25faeb07afa3
       internalID: 1390784626
       vertices: []
       indices: 
@@ -374,9 +374,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 48
-        y: 18
-        width: 15
-        height: 10
+        y: 16
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -384,7 +384,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 343654a16fac45844a59c81e9e465fa7
+      spriteID: 6e07caec39fe1444ea9e60e6a54521fe
       internalID: 706225612
       vertices: []
       indices: 
@@ -394,10 +394,10 @@ TextureImporter:
       name: rat_14
       rect:
         serializedVersion: 2
-        x: 2
-        y: 2
-        width: 13
-        height: 11
+        x: 0
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -405,7 +405,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7fb81ab7ae4f1945a6dbe6aa9a3dc47
+      spriteID: ee0fedeb944a799479961da3c6213af6
       internalID: 59116734
       vertices: []
       indices: 
@@ -415,10 +415,10 @@ TextureImporter:
       name: rat_15
       rect:
         serializedVersion: 2
-        x: 17
-        y: 2
-        width: 15
-        height: 10
+        x: 16
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -426,7 +426,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4854fd29c2945614e9716a15c2721d7e
+      spriteID: f94739bba8e00074e9fb9efb4ba263e4
       internalID: -515635774
       vertices: []
       indices: 
@@ -437,9 +437,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 2
+        y: 0
         width: 16
-        height: 9
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -447,7 +447,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0741270569851c143b3f9f78e2760248
+      spriteID: e6f48c7bed5c5664ebe4fb8d20c299c5
       internalID: 646494999
       vertices: []
       indices: 
@@ -457,10 +457,10 @@ TextureImporter:
       name: rat_17
       rect:
         serializedVersion: 2
-        x: 49
-        y: 2
-        width: 15
-        height: 10
+        x: 48
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -468,7 +468,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 488c654e7a166194ebd26c56ae6f5f62
+      spriteID: de4dcb8a6bbff294bb38a269855d8ce3
       internalID: 617949279
       vertices: []
       indices: 
