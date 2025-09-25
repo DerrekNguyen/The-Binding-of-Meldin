@@ -18,14 +18,7 @@ public class EnemyBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-        {
-            // Destroy the enemy
-            Destroy(gameObject);
-
-            // TODO: Reduce player health and check for game over (down the line)
-        }
-        else if (other.CompareTag("Bullet"))
+        if (other.CompareTag("Bullet"))
         {
             // Destroy the enemy
             Destroy(gameObject);
