@@ -14,6 +14,7 @@ public class PlayerCombat : MonoBehaviour
     private bool isInvincible;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
+    private Movement movement;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,7 @@ public class PlayerCombat : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color;
+        movement = GetComponent<Movement>();
     }
 
     // Update is called once per frame
@@ -32,23 +34,23 @@ public class PlayerCombat : MonoBehaviour
     }
 
     // Handle taking damage
-    void TakeDamage(int damage) {
+    void TakeDamage(int damage, Vector2 knockbackDirection) {
         PlayerManager.playerConfig.health -= damage;
-        // StartCoroutine(invincibilityCoroutine());
+        StartCoroutine(movement.KnockbackCoroutine(knockbackDirection, knockbackForce, knockbackDuration));
+        StartCoroutine(invincibilityCoroutine());
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") && !isInvincible)
         {
             Debug.Log("Player hit by enemy!");
 
             // Apply knockback
             Vector2 knockbackDirection = (transform.position - other.transform.position).normalized;
-            rb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
 
             // Damage calculation
-            TakeDamage(1);
+            TakeDamage(1, knockbackDirection);
         }
     }
 
