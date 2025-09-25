@@ -3,5 +3,5 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class PlayerManager {
-    public static PlayerConfig playerConfig = Resources.Load<PlayerConfig>("Configs/PlayerConfig");
+    public static PlayerConfig playerConfig = Resources.Load<PlayerConfig>("Configs/Entity/PlayerConfig");
 }

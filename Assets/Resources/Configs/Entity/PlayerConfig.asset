@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 5
   money: 0
-  moveSpeed: 5
+  moveSpeed: 3
