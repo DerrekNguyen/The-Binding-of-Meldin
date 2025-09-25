@@ -23,7 +23,13 @@ public class EnemyBehavior : MonoBehaviour
             // Destroy the enemy
             Destroy(gameObject);
 
-            // TODO: Reduce player health and check for game over (down the line)
+            // Reduce player health 
+            if (other != null && PlayerManager.playerConfig != null)
+            {
+                PlayerManager.playerConfig.health--;
+            }
+
+            // TODO: Check for game over (down the line)
         }
         else if (other.CompareTag("Bullet"))
         {

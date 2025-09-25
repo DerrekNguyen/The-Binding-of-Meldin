@@ -22,9 +22,14 @@ public class CoinBehavior : MonoBehaviour
         {
             // TODO: Play a sound effect
             
-
             // Destroy the coin object
             Destroy(gameObject);
+
+            // Increment the player's money count
+            if (other != null && PlayerManager.playerConfig != null)
+            {
+                PlayerManager.playerConfig.money += 1;
+            }
         }
     }
 }

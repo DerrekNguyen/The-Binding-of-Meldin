@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    // Speed of the player
-    [Range(1.0f, 10.0f)]
-    public float speed = 5f;
     public bool canMoveDiagonally = true; // Controls whether the player can move diagonally
 
     private Rigidbody2D rb; // Reference to the Rigidbody2D component attached to the player
@@ -69,7 +66,7 @@ public class Movement : MonoBehaviour
     void FixedUpdate()
     {
         // Apply movement to the player in FixedUpdate for physics consistency
-        rb.velocity = movement * speed;
+        rb.velocity = movement * PlayerManager.playerConfig.moveSpeed;
     }
 
     void RotatePlayer(float x, float y)
