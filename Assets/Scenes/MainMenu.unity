@@ -807,7 +807,7 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4288402132
   m_fontColor: {r: 0.8313726, g: 0.8235295, b: 0.60784316, a: 1}
-  m_enableVertexGradient: 1
+  m_enableVertexGradient: 0
   m_colorMode: 0
   m_fontColorGradient:
     topLeft: {r: 0.8313726, g: 0.8235295, b: 0.60784316, a: 1}
@@ -1678,7 +1678,7 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4288402132
   m_fontColor: {r: 0.8313726, g: 0.8235295, b: 0.60784316, a: 1}
-  m_enableVertexGradient: 1
+  m_enableVertexGradient: 0
   m_colorMode: 0
   m_fontColorGradient:
     topLeft: {r: 0.8313726, g: 0.8235295, b: 0.60784316, a: 1}
@@ -1933,7 +1933,7 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4288402132
   m_fontColor: {r: 0.8313726, g: 0.8235295, b: 0.60784316, a: 1}
-  m_enableVertexGradient: 1
+  m_enableVertexGradient: 0
   m_colorMode: 0
   m_fontColorGradient:
     topLeft: {r: 0.8313726, g: 0.8235295, b: 0.60784316, a: 1}
