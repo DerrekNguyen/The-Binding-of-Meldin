@@ -100,10 +100,10 @@ TextureImporter:
       name: icons_16x16_white_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 98
-        width: 9
-        height: 11
+        x: 0
+        y: 96
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,10 +121,10 @@ TextureImporter:
       name: icons_16x16_white_1
       rect:
         serializedVersion: 2
-        x: 18
-        y: 98
-        width: 11
-        height: 11
+        x: 16
+        y: 96
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,10 +142,10 @@ TextureImporter:
       name: icons_16x16_white_2
       rect:
         serializedVersion: 2
-        x: 36
-        y: 100
-        width: 9
-        height: 8
+        x: 32
+        y: 96
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,10 +163,10 @@ TextureImporter:
       name: icons_16x16_white_3
       rect:
         serializedVersion: 2
-        x: 2
-        y: 83
-        width: 7
-        height: 9
+        x: 0
+        y: 80
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,10 +184,10 @@ TextureImporter:
       name: icons_16x16_white_4
       rect:
         serializedVersion: 2
-        x: 21
-        y: 83
-        width: 6
-        height: 10
+        x: 16
+        y: 80
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,10 +205,10 @@ TextureImporter:
       name: icons_16x16_white_5
       rect:
         serializedVersion: 2
-        x: 36
-        y: 74
-        width: 8
-        height: 19
+        x: 32
+        y: 80
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -226,10 +226,10 @@ TextureImporter:
       name: icons_16x16_white_6
       rect:
         serializedVersion: 2
-        x: 4
-        y: 68
-        width: 8
-        height: 8
+        x: 0
+        y: 64
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -247,10 +247,10 @@ TextureImporter:
       name: icons_16x16_white_7
       rect:
         serializedVersion: 2
-        x: 20
-        y: 68
-        width: 8
-        height: 8
+        x: 16
+        y: 64
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -268,10 +268,10 @@ TextureImporter:
       name: icons_16x16_white_8
       rect:
         serializedVersion: 2
-        x: 35
-        y: 67
-        width: 10
-        height: 9
+        x: 32
+        y: 64
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -289,10 +289,10 @@ TextureImporter:
       name: icons_16x16_white_9
       rect:
         serializedVersion: 2
-        x: 3
-        y: 50
-        width: 10
-        height: 11
+        x: 0
+        y: 48
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -310,10 +310,10 @@ TextureImporter:
       name: icons_16x16_white_10
       rect:
         serializedVersion: 2
-        x: 18
-        y: 50
-        width: 12
-        height: 12
+        x: 16
+        y: 48
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -331,10 +331,10 @@ TextureImporter:
       name: icons_16x16_white_11
       rect:
         serializedVersion: 2
-        x: 33
-        y: 51
-        width: 14
-        height: 10
+        x: 32
+        y: 48
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -352,10 +352,10 @@ TextureImporter:
       name: icons_16x16_white_12
       rect:
         serializedVersion: 2
-        x: 3
-        y: 38
-        width: 10
-        height: 8
+        x: 0
+        y: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -373,10 +373,10 @@ TextureImporter:
       name: icons_16x16_white_13
       rect:
         serializedVersion: 2
-        x: 19
-        y: 34
-        width: 9
-        height: 12
+        x: 16
+        y: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -394,10 +394,10 @@ TextureImporter:
       name: icons_16x16_white_14
       rect:
         serializedVersion: 2
-        x: 34
-        y: 35
-        width: 12
-        height: 9
+        x: 32
+        y: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -415,10 +415,10 @@ TextureImporter:
       name: icons_16x16_white_15
       rect:
         serializedVersion: 2
-        x: 6
-        y: 34
-        width: 4
-        height: 4
+        x: 0
+        y: 16
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -436,10 +436,10 @@ TextureImporter:
       name: icons_16x16_white_16
       rect:
         serializedVersion: 2
-        x: 3
-        y: 18
-        width: 10
-        height: 12
+        x: 16
+        y: 16
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -457,10 +457,10 @@ TextureImporter:
       name: icons_16x16_white_17
       rect:
         serializedVersion: 2
-        x: 19
-        y: 18
-        width: 11
-        height: 12
+        x: 32
+        y: 16
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -478,10 +478,10 @@ TextureImporter:
       name: icons_16x16_white_18
       rect:
         serializedVersion: 2
-        x: 34
-        y: 18
-        width: 12
-        height: 12
+        x: 0
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -499,10 +499,10 @@ TextureImporter:
       name: icons_16x16_white_19
       rect:
         serializedVersion: 2
-        x: 3
-        y: 3
-        width: 10
-        height: 11
+        x: 16
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -512,27 +512,6 @@ TextureImporter:
       bones: []
       spriteID: 66bd2ecee9f0bb34988465ca301c7dac
       internalID: -45308762
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: icons_16x16_white_20
-      rect:
-        serializedVersion: 2
-        x: 17
-        y: 1
-        width: 14
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5671cdeebb257de4d869276308502592
-      internalID: 1802320211
       vertices: []
       indices: 
       edges: []
@@ -561,7 +540,6 @@ TextureImporter:
       icons_16x16_white_18: -216373532
       icons_16x16_white_19: -45308762
       icons_16x16_white_2: 1793896883
-      icons_16x16_white_20: 1802320211
       icons_16x16_white_3: 700067617
       icons_16x16_white_4: 1329035923
       icons_16x16_white_5: 455383628
