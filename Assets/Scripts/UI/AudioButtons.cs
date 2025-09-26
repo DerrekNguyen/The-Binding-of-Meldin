@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Audio;
 
 [RequireComponent(typeof(Image))]
 public class AudioButtons : MonoBehaviour
@@ -10,24 +9,34 @@ public class AudioButtons : MonoBehaviour
     [SerializeField] private Sprite[] sprites;
 
     private Image image;
-    private bool IsOn = true;
+    private static Dictionary<string, bool> NameMatch = new Dictionary<string, bool>();
 
     void Awake()
     {
         image = GetComponent<Image>();
+        if (!NameMatch.ContainsKey(gameObject.name))
+        {
+            NameMatch[gameObject.name] = true; // default state
+        }
+        UpdateSprite();
     }
 
     public void OnMusicPress()
     {
-        IsOn = !IsOn; // Toggle state
+        bool isOn = NameMatch[gameObject.name];
+        isOn = !isOn;
+        NameMatch[gameObject.name] = isOn;
 
-        if (IsOn)
+        if (gameObject.name == "Music" && GlobalMusicManager.Instance != null)
         {
-            image.sprite = sprites[0];
+            GlobalMusicManager.Instance.SetMusicMuted(!isOn);
         }
-        else
-        {
-            image.sprite = sprites[1];
-        }
+        UpdateSprite();
+    }
+
+    private void UpdateSprite()
+    {
+        bool isOn = NameMatch[gameObject.name];
+        image.sprite = isOn ? sprites[0] : sprites[1];
     }
 }
