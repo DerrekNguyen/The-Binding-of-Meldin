@@ -10,7 +10,8 @@ public class RoomPlaySpace : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // CameraController.instance.MoveToRoom(roomCenter.position);
+            Debug.Log("Player entered room: " + gameObject.name);
+            Camera.main.GetComponent<CameraController>().MoveToRoom(transform);
         }
     }
 }

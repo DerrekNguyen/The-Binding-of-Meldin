@@ -459,6 +459,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2643377708164827960}
   - component: {fileID: 5319234733518330372}
+  - component: {fileID: 8502846808238444848}
   m_Layer: 0
   m_Name: PlaySpace
   m_TagString: Untagged
@@ -476,7 +477,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0}
-  m_LocalScale: {x: 5, y: 5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3227424656808191975}
@@ -524,8 +525,21 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 4.8, y: 5}
   m_EdgeRadius: 0
+--- !u!114 &8502846808238444848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3079337802531367035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2455036a8faa004e8b1174bcb504b8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomCenter: {fileID: 0}
 --- !u!1 &3291588155563370667
 GameObject:
   m_ObjectHideFlags: 0
