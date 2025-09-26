@@ -8,6 +8,7 @@ public class Movement : MonoBehaviour
 
     private Rigidbody2D rb; // Reference to the Rigidbody2D component attached to the player
     private Vector2 movement; // Stores the direction of player movement
+    private Vector2 knockbackVelocity; // Direction of knockback when the player takes damage
     private bool isMovingHorizontally = true; // Flag to track if the player is moving horizontally
     private SpriteRenderer spriteRenderer;
 
@@ -20,6 +21,8 @@ public class Movement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         // Prevent the player from rotating
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        // Initialize and knockback velocity to zero
+        knockbackVelocity = Vector2.zero;
     }
 
     // Update is called once per frame
@@ -66,7 +69,7 @@ public class Movement : MonoBehaviour
     void FixedUpdate()
     {
         // Apply movement to the player in FixedUpdate for physics consistency
-        rb.velocity = movement * PlayerManager.playerConfig.moveSpeed;
+        rb.velocity = (movement * PlayerManager.playerConfig.moveSpeed) + knockbackVelocity;
     }
 
     void RotatePlayer(float x, float y)
@@ -78,5 +81,14 @@ public class Movement : MonoBehaviour
         float angle = Mathf.Atan2(y, x) * Mathf.Rad2Deg;
         // Apply the rotation to the player
         transform.rotation = Quaternion.Euler(0, 0, angle);
+    }
+
+    public IEnumerator KnockbackCoroutine(Vector2 direction, float force, float duration)
+    {
+        // Apply knockback in the specified direction with given force
+        knockbackVelocity = direction.normalized * force;
+        yield return new WaitForSeconds(duration);
+        // Reset knockback velocity after the duration
+        knockbackVelocity = Vector2.zero;
     }
 }

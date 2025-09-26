@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class NewBehaviourScript : MonoBehaviour
+public class InGameUiManager : MonoBehaviour
 {
     public GameObject pauseUI;
     public GameObject pauseBackground;
@@ -16,32 +16,32 @@ public class NewBehaviourScript : MonoBehaviour
     }
 
     // Shutdown Game Button Press
-    public void onGameShutdown()
+    public void OnGameShutdown()
     {
         Application.Quit();
     }
 
     // Pause Button Press
-    public void onPause()
+    public void OnPause()
     {
         pauseUI.SetActive(true);
         pauseBackground.SetActive(true);
     }
 
     // Unpause Button Press
-    public void onUnpause()
+    public void OnUnpause()
     {
         pauseUI.SetActive(false);
         pauseBackground.SetActive(false);
     }
 
-    public void onSettingsPress()
+    public void OnSettingsPress()
     {
 
     }
 
-    public void onHomePress()
+    public void OnHomePress()
     {
-        
+        SceneManager.LoadScene("MainMenu");
     }
 }
