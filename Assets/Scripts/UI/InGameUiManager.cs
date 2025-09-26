@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class NewBehaviourScript : MonoBehaviour
+public class InGameUiManager : MonoBehaviour
 {
     public GameObject pauseUI;
     public GameObject pauseBackground;

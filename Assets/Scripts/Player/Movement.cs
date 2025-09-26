@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    private Animator animator;
     public bool canMoveDiagonally = true; // Controls whether the player can move diagonally
 
     private Rigidbody2D rb; // Reference to the Rigidbody2D component attached to the player
@@ -15,6 +16,7 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         // Initialize the SpriteRenderer component
         spriteRenderer = GetComponent<SpriteRenderer>();
         // Initialize the Rigidbody2D componentaw
@@ -64,6 +66,9 @@ public class Movement : MonoBehaviour
                 RotatePlayer(0, verticalInput);
             }
         }
+
+        bool isMoving = movement.sqrMagnitude > 0;
+        animator.SetBool("isMoving", isMoving);
     }
 
     void FixedUpdate()

@@ -13,6 +13,8 @@ TagManager:
   - Boss
   - Enemy
   - Bullet
+  - New tag
+  - RoomCenter
   layers:
   - Default
   - TransparentFX
