@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// filepath: c:\Users\Simon\Documents\GitHub\The-Binding-of-Meldin\Assets\Scripts\MusicScripts\GlobalMusicManager.cs
+// SH
 public class GlobalMusicManager : MonoBehaviour
 {
     [System.Serializable]
