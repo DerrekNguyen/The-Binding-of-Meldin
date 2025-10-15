@@ -14,7 +14,7 @@ public class RoomSpawner : MonoBehaviour
     private int rand;
     private bool spawned = false;
 
-    [SerializeField] private float roomSize = 10f; // size of each room prefab
+    [SerializeField] private float roomSize = 11f; // size of each room prefab
 
     void Start()
     {

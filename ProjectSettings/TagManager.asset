@@ -49,18 +49,36 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Objects
-    uniqueID: 3634268365
-    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: shadow
-    uniqueID: 3680131171
+  - name: BaseL1
+    uniqueID: 900935465
     locked: 0
-  - name: Bat
+  - name: BaseL2
+    uniqueID: 539945513
+    locked: 0
+  - name: PropsL1
+    uniqueID: 1101103609
+    locked: 0
+  - name: PropsL2
+    uniqueID: 4162980071
+    locked: 0
+  - name: Enemies
     uniqueID: 1813670771
     locked: 0
-  - name: button
+  - name: Player
     uniqueID: 3922299193
+    locked: 0
+  - name: PlayerWeapon
+    uniqueID: 582610673
+    locked: 0
+  - name: Doortrims
+    uniqueID: 3880332391
+    locked: 0
+  - name: Doors
+    uniqueID: 1710151451
+    locked: 0
+  - name: Acme
+    uniqueID: 3680131171
     locked: 0
