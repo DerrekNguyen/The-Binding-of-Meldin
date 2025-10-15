@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c6d1698d0fc239d4c8352b90054b2b49
+guid: f18a1a70c5eee0f4ab799b7f08833ac1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,91 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: rat_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 80
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5b14f549679791248961a937ac196ced
-      internalID: 1820545901
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rat_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 80
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a89d34257ce05124d92b96ce34788d72
-      internalID: 611303429
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rat_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c4a40e4a9a0f2f740b1572f9676098a1
-      internalID: -2033165989
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rat_3
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ed8d1ffdf2bd71546ad708229662dd56
-      internalID: -554186241
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rat_4
+      name: flying_skull_0
       rect:
         serializedVersion: 2
         x: 0
@@ -195,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8dd2f774f8aa39e49bb71cfb1a9042e4
-      internalID: -184457385
+      spriteID: 2be12bbb00a9626419a5c73e6fdb6557
+      internalID: 1408258945
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rat_5
+      name: flying_skull_1
       rect:
         serializedVersion: 2
         x: 16
@@ -216,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 10c87076479524b41a7c23a5b39410a4
-      internalID: 1714980657
+      spriteID: 2cc3bd247109ffd41adcfdb12643a771
+      internalID: 196535242
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rat_6
+      name: flying_skull_2
       rect:
         serializedVersion: 2
         x: 32
@@ -237,14 +153,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb6af86bd0c728b4394445a6ddc3b745
-      internalID: 2034331638
+      spriteID: b4927fd152a07e948a420e694374fa7f
+      internalID: -411755658
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rat_7
+      name: flying_skull_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb68e43b74ebdc94396b77924ae575de
+      internalID: 764354351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flying_skull_4
       rect:
         serializedVersion: 2
         x: 0
@@ -258,14 +195,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d1b30885cc24d041b8cb0eb0de3df43
-      internalID: -569405438
+      spriteID: 5611e857ad83bf1479e01442e667ea80
+      internalID: -889747098
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rat_8
+      name: flying_skull_5
       rect:
         serializedVersion: 2
         x: 16
@@ -279,14 +216,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: edba695a150a92d4ba5d4da670775839
-      internalID: -237020927
+      spriteID: 40a9164092b8f88408af8ea9e5f7a975
+      internalID: -1149632517
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rat_9
+      name: flying_skull_6
       rect:
         serializedVersion: 2
         x: 32
@@ -300,14 +237,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b7c2c32ec35cbf49bd88a8ffe1ff5aa
-      internalID: -1172979023
+      spriteID: 3669d866d8ab0c94a93737827d8c8a8f
+      internalID: 2037202159
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rat_10
+      name: flying_skull_7
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cc3ec7a424df9643ba60b9ed6831950
+      internalID: -1337649879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flying_skull_8
       rect:
         serializedVersion: 2
         x: 0
@@ -321,14 +279,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 011bc09e017f113409a7626757f6fcd1
-      internalID: -68511575
+      spriteID: bb822b71f21c41e418b3f6f5247f9a05
+      internalID: -878911457
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rat_11
+      name: flying_skull_9
       rect:
         serializedVersion: 2
         x: 16
@@ -342,14 +300,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f20fd094dbc075b43a49e76d3132610e
-      internalID: 389803972
+      spriteID: 8a8ed15e0273dc94fad29b624afe4ed0
+      internalID: -603111969
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rat_12
+      name: flying_skull_10
       rect:
         serializedVersion: 2
         x: 32
@@ -363,14 +321,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd3f73c13168bb94ebca25faeb07afa3
-      internalID: 1390784626
+      spriteID: c2954668bd669a048b52355576054fc0
+      internalID: 1782716224
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rat_13
+      name: flying_skull_11
       rect:
         serializedVersion: 2
         x: 48
@@ -384,14 +342,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6e07caec39fe1444ea9e60e6a54521fe
-      internalID: 706225612
+      spriteID: c1db6c43e0317bc4a981a80b4ccecdb8
+      internalID: -1951364572
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rat_14
+      name: flying_skull_12
       rect:
         serializedVersion: 2
         x: 0
@@ -405,14 +363,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee0fedeb944a799479961da3c6213af6
-      internalID: 59116734
+      spriteID: 80573e75cd543f34ba186f1f29ef16a6
+      internalID: -779711151
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rat_15
+      name: flying_skull_13
       rect:
         serializedVersion: 2
         x: 16
@@ -426,14 +384,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f94739bba8e00074e9fb9efb4ba263e4
-      internalID: -515635774
+      spriteID: ebee1032720b95242b40a9ca3ac78aca
+      internalID: -574753648
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rat_16
+      name: flying_skull_14
       rect:
         serializedVersion: 2
         x: 32
@@ -447,14 +405,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e6f48c7bed5c5664ebe4fb8d20c299c5
-      internalID: 646494999
+      spriteID: 8d8727e319811504787b3cb4ae8c821d
+      internalID: -111183168
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rat_17
+      name: flying_skull_15
       rect:
         serializedVersion: 2
         x: 48
@@ -468,8 +426,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de4dcb8a6bbff294bb38a269855d8ce3
-      internalID: 617949279
+      spriteID: 8e18e93308975344991bf9f9bd15fed5
+      internalID: -206851802
       vertices: []
       indices: 
       edges: []
@@ -485,24 +443,22 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      rat_0: 1820545901
-      rat_1: 611303429
-      rat_10: -68511575
-      rat_11: 389803972
-      rat_12: 1390784626
-      rat_13: 706225612
-      rat_14: 59116734
-      rat_15: -515635774
-      rat_16: 646494999
-      rat_17: 617949279
-      rat_2: -2033165989
-      rat_3: -554186241
-      rat_4: -184457385
-      rat_5: 1714980657
-      rat_6: 2034331638
-      rat_7: -569405438
-      rat_8: -237020927
-      rat_9: -1172979023
+      flying_skull_0: 1408258945
+      flying_skull_1: 196535242
+      flying_skull_10: 1782716224
+      flying_skull_11: -1951364572
+      flying_skull_12: -779711151
+      flying_skull_13: -574753648
+      flying_skull_14: -111183168
+      flying_skull_15: -206851802
+      flying_skull_2: -411755658
+      flying_skull_3: 764354351
+      flying_skull_4: -889747098
+      flying_skull_5: -1149632517
+      flying_skull_6: 2037202159
+      flying_skull_7: -1337649879
+      flying_skull_8: -878911457
+      flying_skull_9: -603111969
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 54088345bc0aac64fa103c16dc585625
+guid: 4c5fcd1630fd18045b04ab57d9897eea
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bat_0
+      name: goblin_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 81b8095289e6d0e4c8355de32e693330
-      internalID: -191325858
+      spriteID: a5f20db8b3616da4d97d4f3afd551a48
+      internalID: -451161545
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_1
+      name: goblin_1
       rect:
         serializedVersion: 2
         x: 16
@@ -132,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 674254848d0bd4f4bbd0bf0ea45da805
-      internalID: -516004453
+      spriteID: 286752c454638ef4d88485888672574a
+      internalID: 1919971502
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_2
+      name: goblin_2
       rect:
         serializedVersion: 2
         x: 32
@@ -153,14 +153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d7d0eb793e409034a913c86bc1e7e253
-      internalID: -1385686700
+      spriteID: baca88d41001bf7449dcc0609122f7ed
+      internalID: -1219108925
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_3
+      name: goblin_3
       rect:
         serializedVersion: 2
         x: 0
@@ -174,14 +174,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 66f336c3847f81248ad43bfe12d33ed0
-      internalID: -723344913
+      spriteID: abe309777fe09bc4f9616d7c6358ae12
+      internalID: -1901675152
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_4
+      name: goblin_4
       rect:
         serializedVersion: 2
         x: 16
@@ -195,14 +195,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3bd117f89c85bd64782f5a57d1d74815
-      internalID: 1396252880
+      spriteID: d00d70c70246818459e1da57ed0dae43
+      internalID: -1937237186
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_5
+      name: goblin_5
       rect:
         serializedVersion: 2
         x: 32
@@ -216,14 +216,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b34b2de8f4dcd1149b33f6b4a7049f2d
-      internalID: 1333441231
+      spriteID: f1e447eaf3018a34d8eed9a6b1718e26
+      internalID: 227481958
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_6
+      name: goblin_6
       rect:
         serializedVersion: 2
         x: 0
@@ -237,14 +237,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c5983d66e14ba24c87a249aa09e48ae
-      internalID: 1892566235
+      spriteID: ff998effb4acbf0438ab6e5cd03be8a5
+      internalID: 1965671442
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_7
+      name: goblin_7
       rect:
         serializedVersion: 2
         x: 16
@@ -258,14 +258,56 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a659eb8e925355b44a23846001c3687b
-      internalID: -399227265
+      spriteID: 9203ab1997963f442893a58e01a55ee5
+      internalID: 152389494
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_8
+      name: goblin_8
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3822d1c48146444e8df2fd6f892ebd6
+      internalID: 41945515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goblin_9
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 952afc5286cda20459752ac6eab14528
+      internalID: -918670270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goblin_10
       rect:
         serializedVersion: 2
         x: 0
@@ -279,14 +321,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 21beabb92b3150a49ae85516609ac191
-      internalID: 1123189275
+      spriteID: 647917c09f055fc498e00b1e468f4970
+      internalID: -1608006530
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_9
+      name: goblin_11
       rect:
         serializedVersion: 2
         x: 16
@@ -300,14 +342,56 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c0c526619ea81c24b8d24055f4fd3036
-      internalID: 692893949
+      spriteID: 90b5c8ac08e907d46a6d670649377e0f
+      internalID: -2036313601
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_10
+      name: goblin_12
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e8becc9b2543fe41b09584776948de3
+      internalID: -30756265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goblin_13
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5261b6f9c76210a43a2152bf596a2d90
+      internalID: 310635527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goblin_14
       rect:
         serializedVersion: 2
         x: 0
@@ -321,14 +405,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 81f9e34ad97e3ca4f88aa030b6c33191
-      internalID: 966680829
+      spriteID: 1a9ee14da45577148962d9394572650e
+      internalID: 841983123
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_11
+      name: goblin_15
       rect:
         serializedVersion: 2
         x: 16
@@ -342,14 +426,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b2784ff0842725a43ae0fd2b04c6fb9a
-      internalID: -1769690376
+      spriteID: e34518461e6b754419e554ac90cddb5e
+      internalID: -2133945461
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_12
+      name: goblin_16
       rect:
         serializedVersion: 2
         x: 32
@@ -363,14 +447,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 235afb83ae103d54c9fa4c02374ebf67
-      internalID: 1000561727
+      spriteID: 377df4927e26e30439c125054ac45a6d
+      internalID: 1141563427
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_13
+      name: goblin_17
       rect:
         serializedVersion: 2
         x: 48
@@ -384,14 +468,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cabc08698011942449690e9688761c31
-      internalID: 2058699384
+      spriteID: 911af62039c825b48adc55b81aa31339
+      internalID: 1216296159
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_14
+      name: goblin_18
       rect:
         serializedVersion: 2
         x: 0
@@ -405,14 +489,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 214ca5b9a9962e346976352a7a98f1ff
-      internalID: 489901897
+      spriteID: 297081248b8a3ca49a0769bbd26d1a66
+      internalID: 1424860298
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_15
+      name: goblin_19
       rect:
         serializedVersion: 2
         x: 16
@@ -426,14 +510,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 660ce860612cccf489457dfe0bbbebc7
-      internalID: -1753662736
+      spriteID: 4fbcc5ad8f85a144397debcc5e82ec80
+      internalID: -1874648810
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_16
+      name: goblin_20
       rect:
         serializedVersion: 2
         x: 32
@@ -447,14 +531,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b74258c11050604ea29e54b9e7fb6ee
-      internalID: -479522092
+      spriteID: fe705614151e03b4c93463d099ad7d6e
+      internalID: 999432519
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_17
+      name: goblin_21
       rect:
         serializedVersion: 2
         x: 48
@@ -468,8 +552,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3abebd9f9cf03ad46b50468db6916188
-      internalID: 16786795
+      spriteID: b8960c8513a063f4b8dad8a149e3883b
+      internalID: -1902734243
       vertices: []
       indices: 
       edges: []
@@ -485,24 +569,28 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      bat_0: -191325858
-      bat_1: -516004453
-      bat_10: 966680829
-      bat_11: -1769690376
-      bat_12: 1000561727
-      bat_13: 2058699384
-      bat_14: 489901897
-      bat_15: -1753662736
-      bat_16: -479522092
-      bat_17: 16786795
-      bat_2: -1385686700
-      bat_3: -723344913
-      bat_4: 1396252880
-      bat_5: 1333441231
-      bat_6: 1892566235
-      bat_7: -399227265
-      bat_8: 1123189275
-      bat_9: 692893949
+      goblin_0: -451161545
+      goblin_1: 1919971502
+      goblin_10: -1608006530
+      goblin_11: -2036313601
+      goblin_12: -30756265
+      goblin_13: 310635527
+      goblin_14: 841983123
+      goblin_15: -2133945461
+      goblin_16: 1141563427
+      goblin_17: 1216296159
+      goblin_18: 1424860298
+      goblin_19: -1874648810
+      goblin_2: -1219108925
+      goblin_20: 999432519
+      goblin_21: -1902734243
+      goblin_3: -1901675152
+      goblin_4: -1937237186
+      goblin_5: 227481958
+      goblin_6: 1965671442
+      goblin_7: 152389494
+      goblin_8: 41945515
+      goblin_9: -918670270
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

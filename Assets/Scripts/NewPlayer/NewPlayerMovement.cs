@@ -31,7 +31,7 @@ public class NewPlayerMovement : MonoBehaviour
     public bool justDied { get; private set; } = false;
     public bool isMoving { get; private set; } = false;
     public bool facingLeft { get; private set; } = true;
-    public FacingDirection facing { get; private set; } = FacingDirection.Right;
+    public FacingDirection facing { get; private set; } = FacingDirection.Left;
 
     // Components
     private Rigidbody2D rb;
