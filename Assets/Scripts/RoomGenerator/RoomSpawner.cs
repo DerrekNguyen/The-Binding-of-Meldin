@@ -69,6 +69,8 @@ public class RoomSpawner : MonoBehaviour
             {
                 templates.ROOM_COUNT++;
                 templates.occupiedPositions.Add(transform.position); // mark occupied AFTER spawn
+
+                templates.RegisterRoom(room); // keep track of spawned rooms
                 Debug.Log("Spawned room at " + transform.position + " | Count: " + templates.ROOM_COUNT);
             }
         }
