@@ -16,7 +16,6 @@ public class GlobalMusicManager : MonoBehaviour
     [SerializeField] private List<SceneMusic> sceneMusicList;
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private float fadeDuration = 2f;
-    [SerializeField] private float defaultVolume = 1f;
 
     public static GlobalMusicManager Instance { get; private set; }
 
@@ -37,9 +36,14 @@ public class GlobalMusicManager : MonoBehaviour
         if (musicSource == null)
             musicSource = GetComponent<AudioSource>();
 
-        musicSource.volume = defaultVolume;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
+
+    void Start()
+    {
+        if (Settings.Instance != null)
+            musicSource.volume = Settings.Instance.MusicVolume;
+    }    
 
     void OnDestroy()
     {
@@ -74,7 +78,8 @@ public class GlobalMusicManager : MonoBehaviour
         {
             if (!musicSource.isPlaying)
                 musicSource.Play();
-            musicSource.volume = defaultVolume;
+            if (Settings.Instance != null)
+                musicSource.volume = Settings.Instance.MusicVolume;
             return;
         }
 
@@ -108,14 +113,14 @@ public class GlobalMusicManager : MonoBehaviour
         time = 0f;
         while (time < fadeDuration)
         {
-            musicSource.volume = Mathf.Lerp(0f, defaultVolume, time / fadeDuration);
+            musicSource.volume = Mathf.Lerp(0f, Settings.Instance.MusicVolume, time / fadeDuration);
             time += Time.deltaTime;
             yield return null;
             // If scene changed, abort
             if (intendedScene != sceneName || intendedClip != newClip)
                 yield break;
         }
-        musicSource.volume = defaultVolume;
+        musicSource.volume = Settings.Instance.MusicVolume;
     }
 
     private IEnumerator FadeOutAndStopSafe(string sceneName)
@@ -146,5 +151,11 @@ public class GlobalMusicManager : MonoBehaviour
     public bool IsMusicMuted()
     {
         return musicSource != null && musicSource.mute;
+    }
+
+    void Update()
+    {
+        if (Settings.Instance != null)
+            musicSource.volume = Settings.Instance.MusicVolume;
     }
 }

@@ -6,13 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class InGameUiManager : MonoBehaviour
 {
+    public GameObject mainHUDUI;
     public GameObject pauseUI;
     public GameObject pauseBackground;
+    public GameObject settingsMenu;
 
     void Start()
     {
         pauseUI.SetActive(false);
-        pauseBackground.SetActive(false);        
+        pauseBackground.SetActive(false);
+        settingsMenu.SetActive(false);  
     }
 
     // Shutdown Game Button Press
@@ -26,6 +29,7 @@ public class InGameUiManager : MonoBehaviour
     {
         pauseUI.SetActive(true);
         pauseBackground.SetActive(true);
+        settingsMenu.SetActive(false);  // Just in case
     }
 
     // Unpause Button Press
@@ -33,11 +37,23 @@ public class InGameUiManager : MonoBehaviour
     {
         pauseUI.SetActive(false);
         pauseBackground.SetActive(false);
+        settingsMenu.SetActive(false);  // Just in case
     }
 
     public void OnSettingsPress()
     {
+        mainHUDUI.SetActive(false);
+        pauseUI.SetActive(false);
+        pauseBackground.SetActive(false);
+        settingsMenu.SetActive(true);
+    }
 
+    public void OnSettingsBack()
+    {
+        mainHUDUI.SetActive(true);
+        pauseUI.SetActive(true);
+        pauseBackground.SetActive(true);
+        settingsMenu.SetActive(false);
     }
 
     public void OnHomePress()
