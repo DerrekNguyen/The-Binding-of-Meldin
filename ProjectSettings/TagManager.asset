@@ -73,6 +73,9 @@ TagManager:
   - name: PlayerWeapon
     uniqueID: 582610673
     locked: 0
+  - name: Bullet
+    uniqueID: 3171648607
+    locked: 0
   - name: Doortrims
     uniqueID: 3880332391
     locked: 0

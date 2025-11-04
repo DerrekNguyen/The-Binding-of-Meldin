@@ -362,6 +362,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 41328805}
   m_CullTransparentMesh: 1
+--- !u!1 &66266318 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4938656740911139102, guid: 3f697b28755ff4644b777f5028180cec, type: 3}
+  m_PrefabInstance: {fileID: 968647605}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &66266327 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5692640019457029811, guid: 3f697b28755ff4644b777f5028180cec, type: 3}
+  m_PrefabInstance: {fileID: 968647605}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &66266328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66266318}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c0f4577616f39844a8470b0cc56ca7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 6609720776460539663, guid: dcae075743a9f7343ae3ebd737fa9fd2, type: 3}
+  firePoint: {fileID: 66266327}
+  bulletTypes: []
 --- !u!1 &104696626
 GameObject:
   m_ObjectHideFlags: 0
@@ -2969,7 +2994,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 221232771031070217, guid: 696892e88d4a15e44bdcb477dc4d0e25, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 5.6
       objectReference: {fileID: 0}
     - target: {fileID: 221232771031070217, guid: 696892e88d4a15e44bdcb477dc4d0e25, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3058,6 +3083,10 @@ PrefabInstance:
     - target: {fileID: 6994945168937662492, guid: 696892e88d4a15e44bdcb477dc4d0e25, type: 3}
       propertyPath: m_SortingLayer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994945168937662492, guid: 696892e88d4a15e44bdcb477dc4d0e25, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6994945168937662492, guid: 696892e88d4a15e44bdcb477dc4d0e25, type: 3}
       propertyPath: m_SortingLayerID
@@ -3663,9 +3692,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 810301139730959893, guid: 3f697b28755ff4644b777f5028180cec, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4938656740911139102, guid: 3f697b28755ff4644b777f5028180cec, type: 3}
       propertyPath: m_Name
       value: NewPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 4938656740911139102, guid: 3f697b28755ff4644b777f5028180cec, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4938656740911139102, guid: 3f697b28755ff4644b777f5028180cec, type: 3}
       propertyPath: m_TagString
@@ -3714,7 +3751,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4938656740911139102, guid: 3f697b28755ff4644b777f5028180cec, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 66266328}
   m_SourcePrefab: {fileID: 100100000, guid: 3f697b28755ff4644b777f5028180cec, type: 3}
 --- !u!1 &984506135
 GameObject:
@@ -8033,7 +8073,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -614836125
-  m_SortingLayer: 10
+  m_SortingLayer: 11
   m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -8086,7 +8126,7 @@ TilemapCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -8285,7 +8325,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1710151451
-  m_SortingLayer: 9
+  m_SortingLayer: 10
   m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -10909,7 +10949,7 @@ GameObject:
   - component: {fileID: 197565508316303544}
   m_Layer: 3
   m_Name: Collision
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11699,7 +11739,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -414634905
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -12926,9 +12966,9 @@ SceneRoots:
   - {fileID: 40139411}
   - {fileID: 1252756799}
   - {fileID: 299695124}
+  - {fileID: 968647605}
   - {fileID: 697591410}
   - {fileID: 5686778569908489022}
-  - {fileID: 968647605}
   - {fileID: 579302051}
   - {fileID: 1030782775}
   - {fileID: 656946700}

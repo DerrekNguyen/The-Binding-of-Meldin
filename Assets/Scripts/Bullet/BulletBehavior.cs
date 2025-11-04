@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BulletBehavior : MonoBehaviour
 {
-    [HideInInspector] public BulletConfig config;
+    public BulletConfig config;
 
     private Rigidbody2D rb;
     private BoxCollider2D bc;
@@ -17,15 +17,6 @@ public class BulletBehavior : MonoBehaviour
 
     public void Init(BulletConfig config) {
         this.config = config;
-
-        // Set scale
-        transform.localScale = new Vector2(config.scale, config.scale);
-
-        // Set color
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        if (sr != null) {
-            sr.color = config.color;
-        }
     }
 
     // Start is called before the first frame update

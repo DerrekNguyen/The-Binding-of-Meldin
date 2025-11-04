@@ -115,7 +115,8 @@ public class NewPlayerMovement : MonoBehaviour
 
     }
 
-    private Vector2 GetFacingVector()
+    // Get the facing direction as a Vector2
+    public Vector2 GetFacingVector()
     {
         return facing switch
         {

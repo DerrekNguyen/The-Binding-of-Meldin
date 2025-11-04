@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class PlayerShooter : MonoBehaviour
+public class NewPlayerShooter : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public Transform firePoint;
