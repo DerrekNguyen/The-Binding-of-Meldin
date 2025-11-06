@@ -35,7 +35,7 @@ public class BulletBehavior : MonoBehaviour
     void FixedUpdate()
     {
         // Move the bullet forward based on its speed
-        rb.velocity = -transform.up * config.speed;
+        rb.velocity = transform.right * config.speed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -50,4 +50,5 @@ public class BulletBehavior : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+    
 }
