@@ -13,8 +13,12 @@ TagManager:
   - Boss
   - Enemy
   - Bullet
-  - New tag
   - RoomCenter
+  - SlimeProj
+  - BatProj
+  - Rat
+  - Slime
+  - Bat
   layers:
   - Default
   - TransparentFX
@@ -84,4 +88,7 @@ TagManager:
     locked: 0
   - name: Acme
     uniqueID: 3680131171
+    locked: 0
+  - name: Crosshair
+    uniqueID: 1767162041
     locked: 0
