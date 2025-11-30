@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class Progession : MonoBehaviour
 {
-    private const int playerStartHealth = 10;
-    private const int playerStartRevivesCount = 0;
-    private const int playerStartWeaponDamage = 1;
+    public const int playerStartHealth = 10;
+    public const int playerStartRevivesCount = 1;
+    public const int playerStartWeaponDamage = 1;
 
     private const int playerHealthUpgradeCost = 10;
     private const int playerRevivesUpgradeCost = 20;
@@ -33,6 +33,11 @@ public class Progession : MonoBehaviour
     public int PlayerCoinCount => PlayerPrefs.GetInt(PREF_COINS, 0);
     public int RunCount => PlayerPrefs.GetInt(RUN_COUNT, 0);
 
+    void Start()
+    {
+        HardResetProgression();
+    }
+
     public void HardResetProgression()
     {
         // All player preferences set to start amount
@@ -54,11 +59,11 @@ public class Progession : MonoBehaviour
         if (PlayerCoinCount >= playerHealthUpgradeCost)
         {
             // Add respective amount to PlayerHealth player preference
-            int currentHealth = PlayerPrefs.GetInt(PREF_HEALTH, playerStartHealth);
+            int currentHealth = PlayerPrefs.GetInt(PREF_HEALTH);
             PlayerPrefs.SetInt(PREF_HEALTH, currentHealth + playerHealthUpgradeAmount);
             
             // Subtract cost from PlayerCoinCount
-            int currentCoins = PlayerPrefs.GetInt(PREF_COINS, 0);
+            int currentCoins = PlayerPrefs.GetInt(PREF_COINS);
             PlayerPrefs.SetInt(PREF_COINS, currentCoins - playerHealthUpgradeCost);
             
             PlayerPrefs.Save();
@@ -71,11 +76,11 @@ public class Progession : MonoBehaviour
         if (PlayerCoinCount >= playerRevivesUpgradeCost)
         {
             // Add respective amount to PlayerRevives player preference
-            int currentRevives = PlayerPrefs.GetInt(PREF_REVIVES, playerStartRevivesCount);
+            int currentRevives = PlayerPrefs.GetInt(PREF_REVIVES);
             PlayerPrefs.SetInt(PREF_REVIVES, currentRevives + playerRevivesUpgradeAmount);
             
             // Subtract cost from PlayerCoinCount
-            int currentCoins = PlayerPrefs.GetInt(PREF_COINS, 0);
+            int currentCoins = PlayerPrefs.GetInt(PREF_COINS);
             PlayerPrefs.SetInt(PREF_COINS, currentCoins - playerRevivesUpgradeCost);
             
             PlayerPrefs.Save();
@@ -88,11 +93,11 @@ public class Progession : MonoBehaviour
         if (PlayerCoinCount >= playerWeaponDamageUpgradeCost)
         {
             // Add respective amount to WeaponDamage player preference
-            int currentDamage = PlayerPrefs.GetInt(PREF_WEAPON_DAMAGE, playerStartWeaponDamage);
+            int currentDamage = PlayerPrefs.GetInt(PREF_WEAPON_DAMAGE);
             PlayerPrefs.SetInt(PREF_WEAPON_DAMAGE, currentDamage + playerWeaponDamageUpgradeAmount);
             
             // Subtract cost from PlayerCoinCount
-            int currentCoins = PlayerPrefs.GetInt(PREF_COINS, 0);
+            int currentCoins = PlayerPrefs.GetInt(PREF_COINS);
             PlayerPrefs.SetInt(PREF_COINS, currentCoins - playerWeaponDamageUpgradeCost);
             
             PlayerPrefs.Save();
@@ -102,7 +107,7 @@ public class Progession : MonoBehaviour
     public void AddToCoinCount(int count)
     {
         // add count amount to PlayerCoinCount player preference
-        int currentCoins = PlayerPrefs.GetInt(PREF_COINS, 0);
+        int currentCoins = PlayerPrefs.GetInt(PREF_COINS);
         PlayerPrefs.SetInt(PREF_COINS, currentCoins + count);
         PlayerPrefs.Save();
     }
@@ -110,7 +115,7 @@ public class Progession : MonoBehaviour
     public void AddToRunCount()
     {
         // add count amount to PlayerCoinCount player preference
-        int currentRunCount = PlayerPrefs.GetInt(RUN_COUNT, 0);
+        int currentRunCount = PlayerPrefs.GetInt(RUN_COUNT);
         PlayerPrefs.SetInt(PREF_COINS, currentRunCount + 1);
         PlayerPrefs.Save();
     }

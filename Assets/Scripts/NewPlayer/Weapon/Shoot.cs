@@ -8,6 +8,7 @@ public class Shoot : MonoBehaviour
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private Transform firePoint;
     [SerializeField] private float arrowSpeed = 20f;
+    [SerializeField] private float spawnOffset = 5f;
     
     [Header("Animation Parameters")]
     [SerializeField] private RuntimeAnimatorController animatorController;
@@ -59,14 +60,14 @@ public class Shoot : MonoBehaviour
             AnimatorStateInfo stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
             float animationLength = stateInfo.length;
             
-            // Wait for 70% of animation before spawning arrow
-            yield return new WaitForSeconds(animationLength * 0.7f);
+            // Wait for 10% of animation before spawning arrow
+            yield return new WaitForSeconds(animationLength * 0.1f);
             
             // Spawn and shoot arrow
             SpawnArrow();
             
-            // Wait for remaining 30% of animation
-            yield return new WaitForSeconds(animationLength * 0.3f);
+            // Wait for another 50% of animation
+            yield return new WaitForSeconds(animationLength * 0.5f);
             
             // Return to idle state
             if (!string.IsNullOrEmpty(idleStateName))
@@ -105,21 +106,13 @@ public class Shoot : MonoBehaviour
         // Calculate rotation to face mouse
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         
-        // Instantiate arrow at fire point
+        // Spawn arrow
         GameObject arrow = Instantiate(arrowPrefab, spawnPoint.position, Quaternion.Euler(0, 0, angle));
-        
-        // Deparent arrow so it's independent
-        arrow.transform.SetParent(null);
-        
-        // Activate arrow in case prefab is inactive
+
         arrow.SetActive(true);
         
-        // Initialize arrow movement
-        ArrowMovement movement = arrow.GetComponent<ArrowMovement>();
-        if (movement == null)
-        {
-            movement = arrow.AddComponent<ArrowMovement>();
-        }
-        movement.Initialize(direction, arrowSpeed);
+        // Add movement script
+        BulletMovement arrowScript = arrow.AddComponent<BulletMovement>();
+        arrowScript.Initialize(direction, arrowSpeed);
     }
 }

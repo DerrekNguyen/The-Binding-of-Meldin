@@ -1,15 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerAnimationController))]
 public class PlayerLifecycle : MonoBehaviour
 {
     [Header("Health Settings")]
-    [SerializeField] private int maxHealth = 20;
+    [SerializeField] private int maxHealth = 0;
     [SerializeField] private int currentHealth;
 
     [Header("Revive Settings")]
-    [SerializeField] private int maxRevives = 3;
+    [SerializeField] private int maxRevives = 0;
     private int currentRevives;
 
     [SerializeField] private Collider2D hitboxCollider; // Assign the player's damage hitbox
@@ -26,6 +28,9 @@ public class PlayerLifecycle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        maxHealth = PlayerPrefs.GetInt("PlayerHealth");
+        maxRevives = PlayerPrefs.GetInt("PlayerRevives");
+        
         currentHealth = maxHealth;
         currentRevives = maxRevives;
         IsDead = false;

@@ -19,6 +19,7 @@ TagManager:
   - Rat
   - Slime
   - Bat
+  - Collision
   layers:
   - Default
   - TransparentFX
@@ -26,9 +27,9 @@ TagManager:
   - Objects
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Enemy
+  - Player
+  - Wall
   - 
   - 
   - 
@@ -73,6 +74,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3922299193
+    locked: 0
+  - name: Enemy
+    uniqueID: 380652575
     locked: 0
   - name: PlayerWeapon
     uniqueID: 582610673

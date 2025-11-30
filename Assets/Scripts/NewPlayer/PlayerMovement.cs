@@ -17,8 +17,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake()
     {
+        gameObject.layer = LayerMask.NameToLayer("Player");
+        
         _rb = GetComponent<Rigidbody2D>();
         _rb.gravityScale = 0f;
+        _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     void Start()
