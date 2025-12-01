@@ -4,6 +4,8 @@ public class BulletMovement : MonoBehaviour
 {
     private Vector2 _direction;
     private float _speed;
+    private float lifetime = 3f;
+    private float elapsedTime = 0f;
 
     public void Initialize(Vector2 direction, float speed)
     {
@@ -13,6 +15,16 @@ public class BulletMovement : MonoBehaviour
 
     void Update()
     {
+        if (InGameUiManager.isPaused) return;
+        
+        // Update lifetime timer (only when not paused)
+        elapsedTime += Time.deltaTime;
+        if (elapsedTime >= lifetime)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        
         // Calculate movement distance this frame
         float moveDistance = _speed * Time.deltaTime;
         

@@ -16,10 +16,10 @@ GameObject:
   - component: {fileID: 2240908883356164684}
   - component: {fileID: 3426172706490400467}
   - component: {fileID: 5784178812010806269}
+  - component: {fileID: 7892887230558569882}
   - component: {fileID: 95653817837841276}
   - component: {fileID: 370511144479089638}
   - component: {fileID: 2312280060478204035}
-  - component: {fileID: 7892887230558569882}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -192,6 +192,18 @@ MonoBehaviour:
   currentHealth: 0
   maxRevives: 0
   hitboxCollider: {fileID: 28568251581221244}
+--- !u!114 &7892887230558569882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576500344697349282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 386c0df83d7c3a747a24b3f0202a40da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!61 &95653817837841276
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -282,18 +294,6 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &7892887230558569882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1576500344697349282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 386c0df83d7c3a747a24b3f0202a40da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1878644354304102025
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,7 +550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a55cdf07875ee1408a9ccf91b21caf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowPrefab: {fileID: 0}
+  arrowPrefab: {fileID: 5778052635726898829, guid: dcae075743a9f7343ae3ebd737fa9fd2, type: 3}
   firePoint: {fileID: 8649563536880116603}
   arrowSpeed: 20
   spawnOffset: 5

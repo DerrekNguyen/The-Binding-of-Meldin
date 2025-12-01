@@ -4,7 +4,8 @@ using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(SpriteRenderer))]
-[RequireComponent(typeof(AIChasing))]
+[RequireComponent(typeof(EnemyMovement))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class EnemyAnimator : MonoBehaviour
 {
     [Header("Animation Parameters")]
@@ -15,32 +16,76 @@ public class EnemyAnimator : MonoBehaviour
 
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
-    private AIChasing _movement;
-
-    public bool IsDeathAnimationComplete { get; private set; }
-    public bool IsReviveAnimationComplete { get; private set; }
+    private EnemyMovement _movement;
+    
+    private bool isPlayingDeathAnimation = false;
 
     // Start is called before the first frame update
     void Start()
     {
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _movement = GetComponent<AIChasing>();
+        _movement = GetComponent<EnemyMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_movement == null) return;
+        if (_movement == null || isPlayingDeathAnimation) return;
 
         // Movement states
-        _animator.Play(_movement.isMoving ? moveStateName : idleStateName);
+        _animator.Play(_movement.IsMoving ? moveStateName : idleStateName);
 
-        // Flip sprite based on last facing direction
-        if (_movement.LastFacingDirection != Vector2.zero)
+        // Flip sprite based on velocity direction
+        if (_movement.IsMoving)
         {
-            _spriteRenderer.flipX = _movement.LastFacingDirection == Vector2.left;
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            if (rb != null && rb.velocity.x != 0)
+            {
+                _spriteRenderer.flipX = rb.velocity.x < 0;
+            }
         }
+    }
+
+    public void PlayDeathAnimation(GameObject coinPrefab, Vector2 coinSpawnPosition)
+    {
+        isPlayingDeathAnimation = true;
+        
+        // Stop movement
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.velocity = Vector2.zero;
+        }
+        
+        // Play death animation
+        _animator.Play(deathStateName);
+        
+        // Start coroutine to wait for animation and spawn coin
+        StartCoroutine(DeathSequence(coinPrefab, coinSpawnPosition));
+    }
+
+    private IEnumerator DeathSequence(GameObject coinPrefab, Vector2 coinSpawnPosition)
+    {
+        // Wait for animation to start
+        yield return null;
+        
+        // Get animation length
+        AnimatorStateInfo stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
+        float animationLength = stateInfo.length;
+        
+        // Wait for animation to complete
+        yield return new WaitForSeconds(animationLength);
+        
+        // Spawn coin
+        if (coinPrefab != null)
+        {
+            GameObject coin = Instantiate(coinPrefab, coinSpawnPosition, Quaternion.identity);
+            coin.SetActive(true);
+        }
+        
+        // Destroy enemy
+        Destroy(gameObject);
     }
 
     private IEnumerator WaitForAnimationEnd(string stateName, System.Action onComplete, bool lockOnEnd = false)

@@ -8,12 +8,16 @@ public class EnemyMovement : MonoBehaviour
 {
     private GameObject player;
     private PlayerLifecycle playerLifecycle;
+    private EnemyLifecycle enemyLifecycle;
     private Rigidbody2D rb;
     public float speed = 8f;
     public float stoppingDistance = 0.5f;
     
     private bool playerWasDead = false;
     private bool currentlyRetreating = false;
+    
+    public bool IsMoving { get; private set; }
+    public bool canMove = false;
 
     void Start()
     {
@@ -37,6 +41,9 @@ public class EnemyMovement : MonoBehaviour
             }
         }
         
+        // Get EnemyLifecycle from child (hitbox)
+        enemyLifecycle = GetComponentInChildren<EnemyLifecycle>();
+        
         rb = GetComponent<Rigidbody2D>();
         if (rb != null)
         {
@@ -47,8 +54,33 @@ public class EnemyMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (player == null || rb == null)
+        // Check if game is paused
+        if (InGameUiManager.isPaused)
+        {
+            rb.velocity = Vector2.zero;
+            IsMoving = false;
             return;
+        }
+        
+        // Check if enemy is dead
+        if (enemyLifecycle != null && enemyLifecycle.IsDead)
+        {
+            canMove = false;
+        }
+        
+        // Don't move if not allowed
+        if (!canMove)
+        {
+            rb.velocity = Vector2.zero;
+            IsMoving = false;
+            return;
+        }
+        
+        if (player == null || rb == null)
+        {
+            IsMoving = false;
+            return;
+        }
 
         if (playerLifecycle == null)
         {
@@ -57,10 +89,12 @@ public class EnemyMovement : MonoBehaviour
             {
                 Vector2 chaseDirection = (player.transform.position - transform.position).normalized;
                 rb.velocity = chaseDirection * speed;
+                IsMoving = true;
             }
             else
             {
                 rb.velocity = Vector2.zero;
+                IsMoving = false;
             }
             return;
         }
@@ -76,6 +110,7 @@ public class EnemyMovement : MonoBehaviour
 
         if (currentlyRetreating || playerIsDeadNow)
         {
+            IsMoving = currentlyRetreating;
             return;
         }
 
@@ -84,10 +119,12 @@ public class EnemyMovement : MonoBehaviour
         {
             Vector2 direction = (player.transform.position - transform.position).normalized;
             rb.velocity = direction * speed;
+            IsMoving = true;
         }
         else
         {
             rb.velocity = Vector2.zero;
+            IsMoving = false;
         }
     }
 

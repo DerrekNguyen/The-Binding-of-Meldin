@@ -20,6 +20,7 @@ public class PlayerLifecycle : MonoBehaviour
     public bool IsReviving => _isReviving;
     public int CurrentRevives => currentRevives;
     public int MaxRevives => maxRevives;
+    public int CurrentHealth => currentHealth;
 
     private InputManager _input;
     private PlayerAnimationController _animController;

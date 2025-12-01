@@ -4,32 +4,19 @@ using UnityEngine;
 
 public class CoinBehavior : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             // TODO: Play a sound effect
             
+            // Increment the player's money count
+            int currentMoney = PlayerPrefs.GetInt("PlayerCoinCount");
+            PlayerPrefs.SetInt("PlayerCoinCount", currentMoney + 1);
+            PlayerPrefs.Save();
+            
             // Destroy the coin object
             Destroy(gameObject);
-
-            // Increment the player's money count
-            if (other != null && PlayerManager.playerConfig != null)
-            {
-                PlayerManager.playerConfig.money += 1;
-            }
         }
     }
 }

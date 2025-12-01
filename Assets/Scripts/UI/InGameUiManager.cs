@@ -10,12 +10,15 @@ public class InGameUiManager : MonoBehaviour
     public GameObject pauseUI;
     public GameObject pauseBackground;
     public GameObject settingsMenu;
+    
+    public static bool isPaused = false;
 
     void Start()
     {
         pauseUI.SetActive(false);
         pauseBackground.SetActive(false);
-        settingsMenu.SetActive(false);  
+        settingsMenu.SetActive(false);
+        isPaused = false;
     }
 
     // Shutdown Game Button Press
@@ -29,7 +32,8 @@ public class InGameUiManager : MonoBehaviour
     {
         pauseUI.SetActive(true);
         pauseBackground.SetActive(true);
-        settingsMenu.SetActive(false);  // Just in case
+        settingsMenu.SetActive(false);
+        isPaused = true;
     }
 
     // Unpause Button Press
@@ -37,7 +41,8 @@ public class InGameUiManager : MonoBehaviour
     {
         pauseUI.SetActive(false);
         pauseBackground.SetActive(false);
-        settingsMenu.SetActive(false);  // Just in case
+        settingsMenu.SetActive(false);
+        isPaused = false;
     }
 
     public void OnSettingsPress()
@@ -58,6 +63,7 @@ public class InGameUiManager : MonoBehaviour
 
     public void OnHomePress()
     {
+        isPaused = false;
         SceneManager.LoadScene("MainMenu");
     }
 }

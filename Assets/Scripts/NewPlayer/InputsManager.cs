@@ -43,9 +43,8 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        // Check if player is dead
-        PlayerLifecycle playerLifecycle = FindObjectOfType<PlayerLifecycle>();
-        bool isPlayerDead = playerLifecycle != null && playerLifecycle.IsDead;
+        // Check if game is paused
+        bool isGamePaused = InGameUiManager.isPaused;
 
         // Mouse position (always available)
         MousePosition = Mouse.current != null ? Mouse.current.position.ReadValue() : Vector2.zero;
@@ -54,7 +53,28 @@ public class InputManager : MonoBehaviour
         PausePressed = _controls.Player.Pause.WasPressedThisFrame();
         PauseHeld = _controls.Player.Pause.IsPressed();
 
-        // Revive (always available when dead)
+        // If game is paused, don't process other inputs
+        if (isGamePaused)
+        {
+            Move = Vector2.zero;
+            SprintPressed = false;
+            DodgePressed = false;
+            ShootPressed = false;
+            InteractPressed = false;
+            RevivePressed = false;
+            SprintHeld = false;
+            DodgeHeld = false;
+            ShootHeld = false;
+            InteractHeld = false;
+            ReviveHeld = false;
+            return;
+        }
+
+        // Check if player is dead
+        PlayerLifecycle playerLifecycle = FindObjectOfType<PlayerLifecycle>();
+        bool isPlayerDead = playerLifecycle != null && playerLifecycle.IsDead;
+
+        // Revive (available when dead)
         RevivePressed = _controls.Player.Revive.WasPressedThisFrame();
         ReviveHeld = _controls.Player.Revive.IsPressed();
 

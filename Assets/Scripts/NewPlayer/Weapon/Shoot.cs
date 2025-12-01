@@ -108,8 +108,28 @@ public class Shoot : MonoBehaviour
         
         // Spawn arrow
         GameObject arrow = Instantiate(arrowPrefab, spawnPoint.position, Quaternion.Euler(0, 0, angle));
-
         arrow.SetActive(true);
+        
+        // Add Rigidbody2D if not present
+        Rigidbody2D rb = arrow.GetComponent<Rigidbody2D>();
+        if (rb == null)
+        {
+            rb = arrow.AddComponent<Rigidbody2D>();
+            rb.isKinematic = true;
+            rb.gravityScale = 0f;
+        }
+        
+        // Add Collider2D if not present
+        Collider2D col = arrow.GetComponent<Collider2D>();
+        if (col == null)
+        {
+            CircleCollider2D circleCol = arrow.AddComponent<CircleCollider2D>();
+            circleCol.radius = 0.1f;
+            circleCol.isTrigger = true;
+        }
+        
+        // Make sure bullet has the Bullet tag
+        arrow.tag = "Bullet";
         
         // Add movement script
         BulletMovement arrowScript = arrow.AddComponent<BulletMovement>();
