@@ -6,11 +6,18 @@ public class AIChasing : MonoBehaviour
 {
     public GameObject player;
     public float speed;
-
+    public bool isMoving;
+    public Vector2 LastFacingDirection = Vector2.right;
 
     private float distance;
     
-
+    private void ChasePlayer()
+    {
+        Vector2 direction = player.transform.position - transform.position;
+        direction.Normalize();
+        LastFacingDirection = direction.x < 0 ? Vector2.left : Vector2.right;
+        transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -22,11 +29,10 @@ public class AIChasing : MonoBehaviour
     void Update()
     {
         distance = Vector2.Distance(transform.position, player.transform.position);
-        Vector2 direction = player.transform.position - transform.position;
-        direction.Normalize();
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-        transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
-        transform.rotation = Quaternion.Euler(Vector3.forward * angle);
+        isMoving = distance > 0.05f;
+        if (isMoving)
+        {
+            ChasePlayer();
+        }
     }
 }
