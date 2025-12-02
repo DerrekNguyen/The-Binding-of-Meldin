@@ -5,42 +5,60 @@ using UnityEngine;
 public class DoPlayerDamageOnTouch : MonoBehaviour
 {
     private int damageAmount = 1;
-    [SerializeField] private float cooldownTime = 1f;
+    [SerializeField] private float cooldownTime;
+    [SerializeField] private EnemyConfig enemyConfig;
 
-    public bool IsOnCooldown { get; private set; }
-    private float cooldownTimer = 0f;
+    private Coroutine damageCoroutine;
 
     void Start()
     {
-        int runCount = PlayerPrefs.GetInt("RunCount");
-        damageAmount = 1 + (runCount * 2);
+        if (enemyConfig != null)
+        {
+            damageAmount = enemyConfig.GetScaledDamage();
+            cooldownTime = enemyConfig.touchingDamageCooldown;
+        }
+        else
+        {
+            int runCount = PlayerPrefs.GetInt("RunCount", 0);
+            damageAmount = 1 + (runCount * 2);
+            cooldownTime = 1f;
+        }
     }
 
-    void Update()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (IsOnCooldown)
+        if (other.CompareTag("Player") && other.gameObject.name == "Hitbox")
         {
-            cooldownTimer -= Time.deltaTime;
-            if (cooldownTimer <= 0f)
+            PlayerLifecycle playerLifecycle = other.GetComponentInParent<PlayerLifecycle>();
+            if (playerLifecycle != null && damageCoroutine == null)
             {
-                IsOnCooldown = false;
+                damageCoroutine = StartCoroutine(ContinuousDamage(playerLifecycle));
             }
         }
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D other)
     {
-        if (IsOnCooldown) return;
-
         if (other.CompareTag("Player") && other.gameObject.name == "Hitbox")
         {
-            PlayerLifecycle playerLifecycle = other.GetComponentInParent<PlayerLifecycle>();
-            if (playerLifecycle != null)
+            if (damageCoroutine != null)
+            {
+                StopCoroutine(damageCoroutine);
+                damageCoroutine = null;
+            }
+        }
+    }
+
+    private IEnumerator ContinuousDamage(PlayerLifecycle playerLifecycle)
+    {
+        while (true)
+        {
+            if (playerLifecycle != null && !playerLifecycle.IsDead)
             {
                 playerLifecycle.DecreaseHealth(damageAmount);
-                IsOnCooldown = true;
-                cooldownTimer = cooldownTime;
             }
+            
+            yield return new WaitForSeconds(cooldownTime);
         }
     }
 }

@@ -4,26 +4,22 @@ using UnityEngine;
 
 public class EnemyShoot : MonoBehaviour
 {
-    public enum ProjectileType
-    {
-        Slime,
-        Skele
-    }
-
     [Header("Shooting Settings")]
-    [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] private float projectileSpeed = 5f;
-    [SerializeField] private ProjectileType projectileType = ProjectileType.Slime;
-    
-    [Header("Timing")]
-    [SerializeField] private float minShootInterval = 1f;
-    [SerializeField] private float maxShootInterval = 3f;
+    [SerializeField] private ProjConfig projConfig;
+    [SerializeField] private EnemyConfig enemyConfig;
     
     public bool canShoot = false;
     
     private GameObject player;
     private PlayerLifecycle playerLifecycle;
     private Coroutine shootCoroutine;
+    
+    private GameObject projectilePrefab;
+    private float projectileSpeed;
+    private ProjConfig.ProjectileType projectileType;
+    private float minShootInterval;
+    private float maxShootInterval;
+    private float projectileLifetime;
 
     void Start()
     {
@@ -40,6 +36,17 @@ public class EnemyShoot : MonoBehaviour
             {
                 playerLifecycle = FindObjectOfType<PlayerLifecycle>();
             }
+        }
+
+        // Pull all settings from ProjConfig
+        if (projConfig != null)
+        {
+            projectilePrefab = projConfig.projectilePrefab;
+            projectileSpeed = projConfig.projSpeed;
+            projectileType = projConfig.projectileType;
+            minShootInterval = projConfig.min;
+            maxShootInterval = projConfig.max;
+            projectileLifetime = projConfig.lifetime;
         }
     }
 
@@ -94,17 +101,22 @@ public class EnemyShoot : MonoBehaviour
         // Spawn projectile at enemy position
         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.Euler(0, 0, angle));
         projectile.SetActive(true);
-        
+
+        // Get bullet damage from config (fallback to simple scaling if missing)
+        int bulletDamage = enemyConfig != null
+            ? enemyConfig.GetScaledDamage()
+            : 1 + PlayerPrefs.GetInt("RunCount", 0) * 2;
+
         // Add the appropriate projectile script based on type
         switch (projectileType)
         {
-            case ProjectileType.Slime:
+            case ProjConfig.ProjectileType.Slime:
                 SlimeProj slimeScript = projectile.AddComponent<SlimeProj>();
-                slimeScript.Initialize(player, projectileSpeed);
+                slimeScript.Initialize(player, projectileSpeed, bulletDamage, projectileLifetime);
                 break;
-            case ProjectileType.Skele:
+            case ProjConfig.ProjectileType.Skele:
                 SkeleProj skeleScript = projectile.AddComponent<SkeleProj>();
-                skeleScript.Initialize(player, projectileSpeed);
+                skeleScript.Initialize(player, projectileSpeed, bulletDamage, projectileLifetime);
                 break;
         }
     }

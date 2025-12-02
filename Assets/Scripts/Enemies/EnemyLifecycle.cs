@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class EnemyLifecycle : MonoBehaviour
 {
-    [SerializeField] private int maxHealth;
+    private int maxHealth;
     [SerializeField] private int currentHealth;
     [SerializeField] private GameObject coinPrefab;
+    [SerializeField] private EnemyConfig enemyConfig; // config source
     
     private EnemyAnimator enemyAnimator;
     private bool isDead = false;
@@ -17,8 +18,17 @@ public class EnemyLifecycle : MonoBehaviour
 
     void Start()
     {
-        int runCount = PlayerPrefs.GetInt("RunCount", 0);
-        maxHealth = START_HEALTH + (runCount * 2);
+        int runCount = PlayerPrefs.GetInt("RunCount");
+        
+        // Use config if available, otherwise fallback
+        if (enemyConfig != null)
+        {
+            maxHealth = enemyConfig.GetScaledHealth();
+        }
+        else
+        {
+            maxHealth = START_HEALTH + (runCount * 2);
+        }
         currentHealth = maxHealth;
         
         if (!TryGetComponent<Rigidbody2D>(out var rb))
@@ -41,7 +51,7 @@ public class EnemyLifecycle : MonoBehaviour
         
         if (other.CompareTag("Bullet"))
         {
-            int damage = PlayerPrefs.GetInt("PlayerWeaponDamage", 1);
+            int damage = PlayerPrefs.GetInt("PlayerWeaponDamage");
             currentHealth -= damage;
 
             if (currentHealth <= 0)
@@ -61,8 +71,7 @@ public class EnemyLifecycle : MonoBehaviour
         // Stop parent movement immediately
         if (transform.parent != null)
         {
-            EnemyMovement movement = transform.parent.GetComponent<EnemyMovement>();
-            if (movement != null)
+            if (transform.parent.TryGetComponent<EnemyMovement>(out var movement))
             {
                 movement.canMove = false;
             }

@@ -9,7 +9,6 @@ public class RoomTemplates : MonoBehaviour
     public GameObject[] bottomRooms;
     public GameObject[] leftRooms;
     public GameObject[] rightRooms;
-    public GameObject[] capRoom;
     public GameObject closedRoom;
     [Header("BossEnemyPrefab")]
     public GameObject bossEnemyPrefab;

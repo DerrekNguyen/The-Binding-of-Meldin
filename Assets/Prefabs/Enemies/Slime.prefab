@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldownTime: 1
+  enemyConfig: {fileID: 11400000, guid: 7d3a5c8dcd454c9419b045620f21364b, type: 2}
 --- !u!114 &3994059517867344383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,9 +158,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 694e3a4ff3d7c7f448b2284c00268513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
   currentHealth: 0
   coinPrefab: {fileID: 154997232196476715, guid: 423cd9baf3295a84186c149cb3a41f8e, type: 3}
+  enemyConfig: {fileID: 11400000, guid: 7d3a5c8dcd454c9419b045620f21364b, type: 2}
 --- !u!1 &3094173508311449871
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,8 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc3c9b2dc1cf52d439f7e48e823dad4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
-  stoppingDistance: 0.5
+  enemyConfig: {fileID: 11400000, guid: 7d3a5c8dcd454c9419b045620f21364b, type: 2}
   canMove: 0
 --- !u!114 &3197682979972217223
 MonoBehaviour:
@@ -226,11 +226,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4000c8c041ed10429f5b7178f8fefcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 5778052635726898829, guid: e30785042fa388e49a3b8a77e83b91d6, type: 3}
-  projectileSpeed: 10
-  projectileType: 0
-  minShootInterval: 2
-  maxShootInterval: 2.5
+  projConfig: {fileID: 11400000, guid: 921cd720410c697488aa043ee2d1aded, type: 2}
+  enemyConfig: {fileID: 11400000, guid: 7d3a5c8dcd454c9419b045620f21364b, type: 2}
   canShoot: 0
 --- !u!114 &5496495530171633908
 MonoBehaviour:

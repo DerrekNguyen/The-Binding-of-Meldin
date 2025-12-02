@@ -5,21 +5,18 @@ public class SlimeProj : MonoBehaviour
     private GameObject target;
     private float speed;
     private int damageAmount;
-    private float lifetime = 3f;
+    private float lifetime;
     private float elapsedTime = 0f;
 
-    public void Initialize(GameObject playerTarget, float projectileSpeed)
+    public void Initialize(GameObject playerTarget, float projectileSpeed, int damage, float projectileLifetime)
     {
         target = playerTarget;
         speed = projectileSpeed;
-        
-        // Calculate damage based on run count
-        int runCount = PlayerPrefs.GetInt("RunCount", 0);
-        damageAmount = 1 + (runCount * 2);
-        
+        damageAmount = damage;
+        lifetime = projectileLifetime;
+
         // Add Rigidbody2D if not present
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        if (rb == null)
+        if (!TryGetComponent<Rigidbody2D>(out var rb))
         {
             rb = gameObject.AddComponent<Rigidbody2D>();
             rb.isKinematic = true;

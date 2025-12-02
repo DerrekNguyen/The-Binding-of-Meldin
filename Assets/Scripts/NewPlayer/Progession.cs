@@ -11,7 +11,7 @@ public class Progession : MonoBehaviour
     public const int playerStartWeaponDamage = 1;
 
     private const int playerHealthUpgradeCost = 10;
-    private const int playerRevivesUpgradeCost = 20;
+    private const int playerRevivesUpgradeCost = 16;
     private const int playerWeaponDamageUpgradeCost = 4;
 
     private const int playerHealthUpgradeAmount = 10;

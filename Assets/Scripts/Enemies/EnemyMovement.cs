@@ -10,8 +10,10 @@ public class EnemyMovement : MonoBehaviour
     private PlayerLifecycle playerLifecycle;
     private EnemyLifecycle enemyLifecycle;
     private Rigidbody2D rb;
-    public float speed = 8f;
-    public float stoppingDistance = 0.5f;
+    private  float speed;
+    private float stoppingDistance;
+
+    [SerializeField] private EnemyConfig enemyConfig; // config source
     
     private bool playerWasDead = false;
     private bool currentlyRetreating = false;
@@ -44,6 +46,17 @@ public class EnemyMovement : MonoBehaviour
         // Get EnemyLifecycle from child (hitbox)
         enemyLifecycle = GetComponentInChildren<EnemyLifecycle>();
         
+        // Pull movement settings from EnemyConfig (fallback to defaults if missing)
+        if (enemyConfig != null)
+        {
+            speed = enemyConfig.moveSpeed;
+            stoppingDistance = enemyConfig.stoppingDistance;
+        }
+        else {
+            speed = 6f;
+            stoppingDistance = 0.5f;            
+        }
+
         rb = GetComponent<Rigidbody2D>();
         if (rb != null)
         {
@@ -108,9 +121,11 @@ public class EnemyMovement : MonoBehaviour
 
         playerWasDead = playerIsDeadNow;
 
+        // Stop all movement if retreating or player is dead
         if (currentlyRetreating || playerIsDeadNow)
         {
-            IsMoving = currentlyRetreating;
+            rb.velocity = Vector2.zero;
+            IsMoving = false;
             return;
         }
 
@@ -131,46 +146,55 @@ public class EnemyMovement : MonoBehaviour
     private IEnumerator DoRetreat()
     {
         currentlyRetreating = true;
-        rb.simulated = false;
         
-        // Disable all colliders
-        Collider2D[] colliders = GetComponents<Collider2D>();
+        // Disable physics and collisions
+        rb.isKinematic = true;
+        rb.velocity = Vector2.zero;
+        
+        Collider2D[] colliders = GetComponentsInChildren<Collider2D>();
         foreach (var col in colliders)
         {
             col.enabled = false;
         }
         
-        Vector2 awayDirection = ((Vector2)transform.position - (Vector2)player.transform.position);
+        // Calculate retreat direction
+        Vector2 awayDirection = ((Vector2)transform.position - (Vector2)player.transform.position).normalized;
         if (awayDirection.magnitude < 0.1f)
         {
             awayDirection = Random.insideUnitCircle.normalized;
         }
-        else
-        {
-            awayDirection = awayDirection.normalized;
-        }
         
+        // Add random angle variation for spread
+        float randomAngle = Random.Range(-45f, 45f) * Mathf.Deg2Rad;
+        awayDirection = new Vector2(
+            awayDirection.x * Mathf.Cos(randomAngle) - awayDirection.y * Mathf.Sin(randomAngle),
+            awayDirection.x * Mathf.Sin(randomAngle) + awayDirection.y * Mathf.Cos(randomAngle)
+        );
+        
+        // Animate retreat
         Vector2 startPosition = transform.position;
-        Vector2 targetPosition = startPosition + (awayDirection * 3f);
-        
+        Vector2 targetPosition = startPosition + (awayDirection * Random.Range(2.5f, 3.5f));
         float elapsed = 0f;
         float duration = 0.5f;
         
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
-            float progress = elapsed / duration;
-            transform.position = Vector2.Lerp(startPosition, targetPosition, progress);
+            transform.position = Vector2.Lerp(startPosition, targetPosition, elapsed / duration);
             yield return null;
         }
         
-        // Re-enable colliders
+        transform.position = targetPosition;
+        
+        // Re-enable physics and collisions
         foreach (var col in colliders)
         {
             col.enabled = true;
         }
         
-        rb.simulated = true;
+        yield return new WaitForFixedUpdate();
+        
+        rb.isKinematic = false;
         rb.velocity = Vector2.zero;
         currentlyRetreating = false;
     }
