@@ -15,9 +15,18 @@ public class InGameUiManager : MonoBehaviour
 
     void Start()
     {
-        pauseUI.SetActive(false);
-        pauseBackground.SetActive(false);
-        settingsMenu.SetActive(false);
+        if(pauseUI != null)
+        {
+            pauseUI.SetActive(false);
+        }
+        if(pauseBackground != null)
+        {
+            pauseBackground.SetActive(false);
+        }
+        if(settingsMenu != null)
+        {
+            settingsMenu.SetActive(false);
+        }        
         isPaused = false;
     }
 
@@ -30,35 +39,77 @@ public class InGameUiManager : MonoBehaviour
     // Pause Button Press
     public void OnPause()
     {
-        pauseUI.SetActive(true);
-        pauseBackground.SetActive(true);
-        settingsMenu.SetActive(false);
+        if(pauseUI != null)
+        {
+            pauseUI.SetActive(true);
+        }
+        if(pauseBackground != null)
+        {
+            pauseBackground.SetActive(true);
+        }
+        if(settingsMenu != null)
+        {
+            settingsMenu.SetActive(false);
+        }
         isPaused = true;
     }
 
     // Unpause Button Press
     public void OnUnpause()
     {
-        pauseUI.SetActive(false);
-        pauseBackground.SetActive(false);
-        settingsMenu.SetActive(false);
+        if(pauseUI != null)
+        {
+            pauseUI.SetActive(false);
+        }
+        if(pauseBackground != null)
+        {
+            pauseBackground.SetActive(false);
+        }
+        if(settingsMenu != null)
+        {
+            settingsMenu.SetActive(false);
+        }
         isPaused = false;
     }
 
     public void OnSettingsPress()
     {
-        mainHUDUI.SetActive(false);
-        pauseUI.SetActive(false);
-        pauseBackground.SetActive(false);
-        settingsMenu.SetActive(true);
+        if(mainHUDUI != null)
+        {
+            mainHUDUI.SetActive(false);
+        }
+        if(pauseUI != null)
+        {
+            pauseUI.SetActive(false);
+        }
+        if(pauseBackground != null)
+        {
+            pauseBackground.SetActive(false);
+        }
+        if(settingsMenu != null)
+        {
+            settingsMenu.SetActive(true);
+        }
     }
 
     public void OnSettingsBack()
     {
-        mainHUDUI.SetActive(true);
-        pauseUI.SetActive(true);
-        pauseBackground.SetActive(true);
-        settingsMenu.SetActive(false);
+        if(mainHUDUI != null)
+        {
+            mainHUDUI.SetActive(true);
+        }
+        if(pauseUI != null)
+        {
+            pauseUI.SetActive(true);
+        }
+        if(pauseBackground != null)
+        {
+            pauseBackground.SetActive(true);
+        }
+        if(settingsMenu != null)
+        {
+            settingsMenu.SetActive(false);
+        }
     }
 
     public void OnHomePress()

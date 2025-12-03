@@ -110,6 +110,7 @@ MonoBehaviour:
   - {fileID: 7569765964835995871}
   roomBarrier: {fileID: 5956125665655344604}
   activationDelay: 1
+  bossDetectionDelay: 2
 --- !u!1 &1077410139552785960
 GameObject:
   m_ObjectHideFlags: 0

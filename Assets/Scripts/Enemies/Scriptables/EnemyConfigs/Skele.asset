@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Skele
   m_EditorClassIdentifier: 
   baseHealth: 2
-  healthMultiplierPerRun: 1.2
+  healthMultiplierPerRun: 1.4
   baseDamage: 1
-  damageMultiplierPerRun: 1.2
+  damageMultiplierPerRun: 1.4
   touchingDamageCooldown: 1
   moveSpeed: 8
   stoppingDistance: 5

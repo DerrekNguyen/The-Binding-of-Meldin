@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(PlayerAnimationController))]
 public class PlayerLifecycle : MonoBehaviour
@@ -25,6 +26,7 @@ public class PlayerLifecycle : MonoBehaviour
     private InputManager _input;
     private PlayerAnimationController _animController;
     private bool _isReviving = false;
+    private bool _gameOverTriggered = false;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +53,15 @@ public class PlayerLifecycle : MonoBehaviour
             }
         }
 
+        // Check if dead with no revives - trigger game over
+        if (IsDead && !_gameOverTriggered && currentRevives <= 0)
+        {
+            if (_animController != null && _animController.IsDeathAnimationComplete)
+            {
+                StartCoroutine(GameOverSequence());
+            }
+        }
+
         // Check health - set IsDead when health reaches zero
         if (currentHealth <= 0 && !IsDead)
         {
@@ -68,10 +79,6 @@ public class PlayerLifecycle : MonoBehaviour
         if (IsDead) return;
 
         currentHealth += amount;
-        
-        // Cap health at max
-        if (currentHealth > maxHealth)
-            currentHealth = maxHealth;
     }
 
     public void DecreaseHealth(int amount)
@@ -106,6 +113,30 @@ public class PlayerLifecycle : MonoBehaviour
         
         if (hitboxCollider != null)
             hitboxCollider.enabled = true;
+    }
+
+    private IEnumerator GameOverSequence()
+    {
+        _gameOverTriggered = true;
+
+        // Optional: wait a moment before transitioning
+        yield return new WaitForSeconds(3f);
+
+        // Reset progression
+        Progession progression = FindObjectOfType<Progession>();
+        if (progression != null)
+        {
+            progression.HardResetProgression();
+        }
+        else
+        {
+            // Fallback if Progression script not in scene
+            PlayerPrefs.DeleteAll();
+            PlayerPrefs.Save();
+        }
+
+        // Load PreRun scene
+        SceneManager.LoadScene("PreRun");
     }
 
     public void Revive()

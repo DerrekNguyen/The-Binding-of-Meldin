@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aa59171783e55a4da1c91748f0f4bb7, type: 3}
+  m_Name: SlimeKingS
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 5778052635726898829, guid: 4c0c79c0407c7de48a8da24ff1ebec3a, type: 3}
+  projSpeed: 11
+  projectileType: 0
+  lifetime: 4
+  min: 3
+  max: 3.5

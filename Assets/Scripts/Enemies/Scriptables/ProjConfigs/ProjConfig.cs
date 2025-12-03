@@ -7,8 +7,8 @@ public class ProjConfig : ScriptableObject
 {
     public enum ProjectileType
     {
-        Slime,
-        Skele
+        Follow,
+        Straight
     }
 
     [Header("Bullet Settings")]

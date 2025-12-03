@@ -23,4 +23,9 @@ public class GeneralSceneChanges : MonoBehaviour
     {
         SceneManager.LoadScene("HowTo");
     }
+
+    public void ToPreRun()
+    {
+        SceneManager.LoadScene("PreRun");
+    }
 }

@@ -767,7 +767,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 5.017}
+  m_AnchoredPosition: {x: 0, y: 5.0169983}
   m_SizeDelta: {x: 250, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &440300707
@@ -1065,7 +1065,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 265, y: 0.000004597}
+  m_AnchoredPosition: {x: 265, y: 5.017}
   m_SizeDelta: {x: 250, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &594753883
@@ -1114,7 +1114,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1283777754}
         m_TargetAssemblyTypeName: GeneralSceneChanges, Assembly-CSharp
-        m_MethodName: ToGameScene
+        m_MethodName: ToPreRun
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1211,8 +1211,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundLibrary: {fileID: 709296793}
   musicLibrary: {fileID: 709296792}
-  globalMusicVolume: 1
-  globalSoundVolume: 1
   backgroundMusic: {fileID: 709296795}
   volumeRampDuration: 1
 --- !u!114 &709296792
@@ -1230,16 +1228,19 @@ MonoBehaviour:
   soundEffects:
   - name: Credits
     clip: {fileID: 8300000, guid: 636127c0bffdaea4eb3c598713ca9b98, type: 3}
-    volume: 1
+    volume: 0.5
   - name: GameScene
-    clip: {fileID: 8300000, guid: f53dc95a58281684696a015be3a777f8, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: 28dc0a6e0daa62247b6ece6727e84a8f, type: 3}
+    volume: 0.5
   - name: HowTo
     clip: {fileID: 8300000, guid: c6a5e05f65c84e447977fe955315ed2d, type: 3}
-    volume: 1
+    volume: 0.5
   - name: MainMenu
     clip: {fileID: 8300000, guid: 9f3dd6c33312c154db573b8dd811492d, type: 3}
-    volume: 1
+    volume: 0.5
+  - name: PreRun
+    clip: {fileID: 8300000, guid: df97340f283f4454aa907dedf389dc93, type: 3}
+    volume: 0.5
 --- !u!114 &709296793
 MonoBehaviour:
   m_ObjectHideFlags: 0

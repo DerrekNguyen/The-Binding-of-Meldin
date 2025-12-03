@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Rat
   m_EditorClassIdentifier: 
   baseHealth: 2
-  healthMultiplierPerRun: 1.2
+  healthMultiplierPerRun: 1.4
   baseDamage: 1
-  damageMultiplierPerRun: 1.2
+  damageMultiplierPerRun: 1.4
   touchingDamageCooldown: 0.75
   moveSpeed: 10
   stoppingDistance: 0.5

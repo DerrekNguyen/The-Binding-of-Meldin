@@ -15,13 +15,26 @@ public class RoomController : MonoBehaviour
 
     private bool roomActive = false;
     private bool roomCleared = false;
+    private bool replacedWithBossController = false;
 
     void Start()
     {
-        // Ensure barrier starts disabled
+        if (roomBarrier == gameObject)
+        {
+            roomBarrier = null;
+        }
+
         if (roomBarrier != null)
         {
             roomBarrier.SetActive(false);
+        }
+        
+        foreach (GameObject enemy in enemies)
+        {
+            if (enemy != null)
+            {
+                DeactivateEnemy(enemy);
+            }
         }
     }
 
@@ -36,10 +49,47 @@ public class RoomController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // Boss detection and immediate replacement
+        if (!replacedWithBossController && other.CompareTag("Boss"))
+        {
+            ReplaceWithBossController(other.gameObject);
+            return;
+        }
+
         if (other.CompareTag("Player") && !roomActive)
         {
             OnPlayerEnterRoom();
         }
+    }
+
+    private void ReplaceWithBossController(GameObject boss)
+    {
+        if (replacedWithBossController) return;
+        replacedWithBossController = true;
+
+        // Delete the detected boss
+        if (boss != null)
+        {
+            Destroy(boss);
+        }
+
+        // Add BossRoomController to the same GameObject
+        if (gameObject.GetComponent<BossRoomController>() == null)
+        {
+            gameObject.AddComponent<BossRoomController>();
+        }
+
+        // Delete all enemies in the list
+        foreach (GameObject enemy in enemies)
+        {
+            if (enemy != null)
+            {
+                Destroy(enemy);
+            }
+        }
+
+        // Remove this RoomController component
+        Destroy(this);
     }
 
     private void OnPlayerEnterRoom()
@@ -47,7 +97,7 @@ public class RoomController : MonoBehaviour
         roomActive = true;
         
         // Enable room barrier immediately
-        if (roomBarrier != null)
+        if (roomBarrier != null && roomBarrier != gameObject)
         {
             roomBarrier.SetActive(true);
         }
@@ -71,16 +121,27 @@ public class RoomController : MonoBehaviour
 
     private void ActivateEnemy(GameObject enemy)
     {
-        // Enable enemy shooting
         if (enemy.TryGetComponent<EnemyShoot>(out EnemyShoot shootScript))
         {
             shootScript.canShoot = true;
         }
 
-        // Enable enemy movement
         if (enemy.TryGetComponent<EnemyMovement>(out EnemyMovement moveScript))
         {
             moveScript.canMove = true;
+        }
+    }
+
+    private void DeactivateEnemy(GameObject enemy)
+    {
+        if (enemy.TryGetComponent<EnemyShoot>(out EnemyShoot shootScript))
+        {
+            shootScript.canShoot = false;
+        }
+
+        if (enemy.TryGetComponent<EnemyMovement>(out EnemyMovement moveScript))
+        {
+            moveScript.canMove = false;
         }
     }
 
@@ -88,7 +149,6 @@ public class RoomController : MonoBehaviour
     {
         foreach (GameObject enemy in enemies)
         {
-            // If any enemy still exists, room is not cleared
             if (enemy != null)
             {
                 return false;
@@ -109,13 +169,12 @@ public class RoomController : MonoBehaviour
     {
         yield return new WaitForSeconds(activationDelay);
 
-        if (roomBarrier != null)
+        if (roomBarrier != null && roomBarrier != gameObject)
         {
             roomBarrier.SetActive(false);
         }
     }
 
-    // Public method to check room status
     public bool IsRoomCleared()
     {
         return roomCleared;

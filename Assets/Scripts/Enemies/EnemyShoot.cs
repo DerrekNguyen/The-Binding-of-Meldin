@@ -20,6 +20,7 @@ public class EnemyShoot : MonoBehaviour
     private float minShootInterval;
     private float maxShootInterval;
     private float projectileLifetime;
+    private EnemyLifecycle enemyLifecycle;
 
     void Start()
     {
@@ -38,6 +39,13 @@ public class EnemyShoot : MonoBehaviour
             }
         }
 
+        // Cache enemy lifecycle from this object or children
+        enemyLifecycle = GetComponent<EnemyLifecycle>();
+        if (enemyLifecycle == null)
+        {
+            enemyLifecycle = GetComponentInChildren<EnemyLifecycle>();
+        }
+
         // Pull all settings from ProjConfig
         if (projConfig != null)
         {
@@ -52,6 +60,17 @@ public class EnemyShoot : MonoBehaviour
 
     void Update()
     {
+        // If enemy is dead, ensure shooting stops
+        if (enemyLifecycle != null && enemyLifecycle.IsDead)
+        {
+            if (shootCoroutine != null)
+            {
+                StopCoroutine(shootCoroutine);
+                shootCoroutine = null;
+            }
+            return;
+        }
+
         // Start shooting coroutine if canShoot is true and not already running
         if (canShoot && shootCoroutine == null)
         {
@@ -69,12 +88,21 @@ public class EnemyShoot : MonoBehaviour
     {
         while (canShoot)
         {
+            // If enemy died during wait, stop
+            if (enemyLifecycle != null && enemyLifecycle.IsDead)
+            {
+                break;
+            }
+
             // Wait random interval
             float waitTime = Random.Range(minShootInterval, maxShootInterval);
             yield return new WaitForSeconds(waitTime);
             
-            // Check if still allowed to shoot, game isn't paused, player exists and isn't dead
-            if (canShoot && !InGameUiManager.isPaused && player != null 
+            // Check if still allowed to shoot, game isn't paused, player exists and isn't dead, and enemy isn't dead
+            if (canShoot 
+                && (enemyLifecycle == null || !enemyLifecycle.IsDead)
+                && !InGameUiManager.isPaused 
+                && player != null 
                 && (playerLifecycle == null || !playerLifecycle.IsDead))
             {
                 ShootProjectile();
@@ -110,13 +138,13 @@ public class EnemyShoot : MonoBehaviour
         // Add the appropriate projectile script based on type
         switch (projectileType)
         {
-            case ProjConfig.ProjectileType.Slime:
-                SlimeProj slimeScript = projectile.AddComponent<SlimeProj>();
-                slimeScript.Initialize(player, projectileSpeed, bulletDamage, projectileLifetime);
+            case ProjConfig.ProjectileType.Follow:
+                FollowProj followScript = projectile.AddComponent<FollowProj>();
+                followScript.Initialize(player, projectileSpeed, bulletDamage, projectileLifetime);
                 break;
-            case ProjConfig.ProjectileType.Skele:
-                SkeleProj skeleScript = projectile.AddComponent<SkeleProj>();
-                skeleScript.Initialize(player, projectileSpeed, bulletDamage, projectileLifetime);
+            case ProjConfig.ProjectileType.Straight:
+                StraightProj straightScript = projectile.AddComponent<StraightProj>();
+                straightScript.Initialize(player, projectileSpeed, bulletDamage, projectileLifetime);
                 break;
         }
     }

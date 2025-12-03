@@ -9,6 +9,7 @@ public class DoPlayerDamageOnTouch : MonoBehaviour
     [SerializeField] private EnemyConfig enemyConfig;
 
     private Coroutine damageCoroutine;
+    private EnemyLifecycle enemyLifecycle;
 
     void Start()
     {
@@ -23,12 +24,21 @@ public class DoPlayerDamageOnTouch : MonoBehaviour
             damageAmount = 1 + (runCount * 2);
             cooldownTime = 1f;
         }
+
+        enemyLifecycle = GetComponent<EnemyLifecycle>();
+        if (enemyLifecycle == null)
+        {
+            enemyLifecycle = GetComponentInParent<EnemyLifecycle>();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") && other.gameObject.name == "Hitbox")
         {
+            // Do not start if enemy is dead
+            if (enemyLifecycle != null && enemyLifecycle.IsDead) return;
+
             PlayerLifecycle playerLifecycle = other.GetComponentInParent<PlayerLifecycle>();
             if (playerLifecycle != null && damageCoroutine == null)
             {
@@ -53,6 +63,12 @@ public class DoPlayerDamageOnTouch : MonoBehaviour
     {
         while (true)
         {
+            // Stop if enemy died
+            if (enemyLifecycle != null && enemyLifecycle.IsDead)
+            {
+                break;
+            }
+
             if (playerLifecycle != null && !playerLifecycle.IsDead)
             {
                 playerLifecycle.DecreaseHealth(damageAmount);
@@ -60,5 +76,6 @@ public class DoPlayerDamageOnTouch : MonoBehaviour
             
             yield return new WaitForSeconds(cooldownTime);
         }
+        damageCoroutine = null;
     }
 }

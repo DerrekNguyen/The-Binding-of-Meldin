@@ -47,7 +47,7 @@ public class EnemyAnimator : MonoBehaviour
         }
     }
 
-    public void PlayDeathAnimation(GameObject coinPrefab, Vector2 coinSpawnPosition)
+    public void PlayDeathAnimation()
     {
         isPlayingDeathAnimation = true;
         
@@ -60,42 +60,24 @@ public class EnemyAnimator : MonoBehaviour
         
         // Play death animation
         _animator.Play(deathStateName);
-        
-        // Start coroutine to wait for animation and spawn coin
-        StartCoroutine(DeathSequence(coinPrefab, coinSpawnPosition));
     }
 
-    private IEnumerator DeathSequence(GameObject coinPrefab, Vector2 coinSpawnPosition)
+    // Expose death animation length - must be called after PlayDeathAnimation
+    public float GetDeathAnimationLength()
     {
-        // Wait for animation to start
-        yield return null;
-        
-        // Get animation length
-        AnimatorStateInfo stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
-        float animationLength = stateInfo.length;
-        
-        // Wait for animation to complete
-        yield return new WaitForSeconds(animationLength);
-        
-        // Spawn coin
-        if (coinPrefab != null)
+        // If death animation is playing, get the actual state info length
+        if (isPlayingDeathAnimation && _animator != null)
         {
-            GameObject coin = Instantiate(coinPrefab, coinSpawnPosition, Quaternion.identity);
-            coin.SetActive(true);
+            AnimatorStateInfo stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
+            // Check if we're in the death state
+            if (stateInfo.IsName(deathStateName))
+            {
+                return stateInfo.length;
+            }
         }
         
-        // Destroy enemy
-        Destroy(gameObject);
-    }
-
-    private IEnumerator WaitForAnimationEnd(string stateName, System.Action onComplete, bool lockOnEnd = false)
-    {
-        yield return null;
-        AnimatorStateInfo stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
-        yield return new WaitForSeconds(stateInfo.length - (lockOnEnd ? 0.05f : 0));
-        
-        if (lockOnEnd) _animator.speed = 0f;
-        onComplete?.Invoke();
+        // Fallback: search clips by name
+        return GetAnimationLength(deathStateName);
     }
 
     private float GetAnimationLength(string stateName)

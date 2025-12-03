@@ -18,8 +18,10 @@ TagManager:
   - BatProj
   - Rat
   - Slime
-  - Bat
   - Collision
+  - Skele
+  - Interactable
+  - Heart
   layers:
   - Default
   - TransparentFX

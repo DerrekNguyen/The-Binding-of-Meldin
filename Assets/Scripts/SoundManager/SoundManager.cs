@@ -62,7 +62,7 @@ public class SoundManager : MonoBehaviour
         lastKnownGlobalMusicVolume = globalMusicVolume;
     }
     
-    private void ChangeBackgroundMusic(string sceneName)
+    public void ChangeBackgroundMusic(string sceneName)
     {
         if (musicLibrary == null || backgroundMusic == null)
         {

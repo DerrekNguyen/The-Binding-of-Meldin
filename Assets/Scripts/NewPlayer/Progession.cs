@@ -12,7 +12,7 @@ public class Progession : MonoBehaviour
 
     private const int playerHealthUpgradeCost = 10;
     private const int playerRevivesUpgradeCost = 16;
-    private const int playerWeaponDamageUpgradeCost = 4;
+    private const int playerWeaponDamageUpgradeCost = 8;
 
     private const int playerHealthUpgradeAmount = 10;
     private const int playerRevivesUpgradeAmount = 1;
@@ -22,9 +22,20 @@ public class Progession : MonoBehaviour
     private const string PREF_HEALTH = "PlayerHealth";
     private const string PREF_REVIVES = "PlayerRevives";
     private const string PREF_WEAPON_DAMAGE = "PlayerWeaponDamage";
+    
+    // 
     private const string PREF_COINS = "PlayerCoinCount";
-
     private const string RUN_COUNT = "RunCount";
+
+    // Cost PlayerPrefs keys
+    private const string PREF_HEALTH_COST = "PlayerHealthCost";
+    private const string PREF_REVIVES_COST = "PlayerRevivesCost";
+    private const string PREF_WEAPON_DAMAGE_COST = "PlayerWeaponDamageCost";
+
+    // Upgrade Amount PlayerPrefs keys
+    private const string PREF_HEALTH_UPGRADE = "PlayerHealthUpgrade";
+    private const string PREF_REVIVES_UPGRADE = "PlayerRevivesUpgrade";
+    private const string PREF_WEAPON_DAMAGE_UPGRADE = "PlayerWeaponDamageUpgrade";
 
     // Public accessors
     public int PlayerHealth => PlayerPrefs.GetInt(PREF_HEALTH, playerStartHealth);
@@ -35,7 +46,23 @@ public class Progession : MonoBehaviour
 
     void Start()
     {
-        HardResetProgression();
+        CheckFirstTimePlay();
+    }
+
+    private void CheckFirstTimePlay()
+    {
+        // Check if all player prefs are at default (0) - indicates first time playing
+        bool healthIsZero = !PlayerPrefs.HasKey(PREF_HEALTH);
+        bool revivesIsZero = !PlayerPrefs.HasKey(PREF_REVIVES);
+        bool weaponDamageIsZero = !PlayerPrefs.HasKey(PREF_WEAPON_DAMAGE);
+        bool coinsIsZero = !PlayerPrefs.HasKey(PREF_COINS);
+        bool runCountIsZero = !PlayerPrefs.HasKey(RUN_COUNT);
+
+        // If all are uninitialized, it's the first time playing
+        if (healthIsZero && revivesIsZero && weaponDamageIsZero && coinsIsZero && runCountIsZero)
+        {
+            HardResetProgression();
+        }
     }
 
     public void HardResetProgression()
@@ -47,61 +74,19 @@ public class Progession : MonoBehaviour
         
         // Coins set to zero
         PlayerPrefs.SetInt(PREF_COINS, 0);
-
         PlayerPrefs.SetInt(RUN_COUNT, 0);
+
+        // Set costs
+        PlayerPrefs.SetInt(PREF_HEALTH_COST, playerHealthUpgradeCost);
+        PlayerPrefs.SetInt(PREF_REVIVES_COST, playerRevivesUpgradeCost);
+        PlayerPrefs.SetInt(PREF_WEAPON_DAMAGE_COST, playerWeaponDamageUpgradeCost);
+
+        // Set upgrade amounts
+        PlayerPrefs.SetInt(PREF_HEALTH_UPGRADE, playerHealthUpgradeAmount);
+        PlayerPrefs.SetInt(PREF_REVIVES_UPGRADE, playerRevivesUpgradeAmount);
+        PlayerPrefs.SetInt(PREF_WEAPON_DAMAGE_UPGRADE, playerWeaponDamageUpgradeAmount);
         
         PlayerPrefs.Save();
-    }
-
-    public void PurchaseHealthUpgrade()
-    {
-        // if we have enough to buy in PlayerCoinCount
-        if (PlayerCoinCount >= playerHealthUpgradeCost)
-        {
-            // Add respective amount to PlayerHealth player preference
-            int currentHealth = PlayerPrefs.GetInt(PREF_HEALTH);
-            PlayerPrefs.SetInt(PREF_HEALTH, currentHealth + playerHealthUpgradeAmount);
-            
-            // Subtract cost from PlayerCoinCount
-            int currentCoins = PlayerPrefs.GetInt(PREF_COINS);
-            PlayerPrefs.SetInt(PREF_COINS, currentCoins - playerHealthUpgradeCost);
-            
-            PlayerPrefs.Save();
-        }
-    }
-
-    public void PurchaseReviveUpgrade()
-    {
-        // if we have enough to buy in PlayerCoinCount
-        if (PlayerCoinCount >= playerRevivesUpgradeCost)
-        {
-            // Add respective amount to PlayerRevives player preference
-            int currentRevives = PlayerPrefs.GetInt(PREF_REVIVES);
-            PlayerPrefs.SetInt(PREF_REVIVES, currentRevives + playerRevivesUpgradeAmount);
-            
-            // Subtract cost from PlayerCoinCount
-            int currentCoins = PlayerPrefs.GetInt(PREF_COINS);
-            PlayerPrefs.SetInt(PREF_COINS, currentCoins - playerRevivesUpgradeCost);
-            
-            PlayerPrefs.Save();
-        }
-    }
-
-    public void PurchaseWeaponDamageUpgrade()
-    {
-        // if we have enough to buy in PlayerCoinCount
-        if (PlayerCoinCount >= playerWeaponDamageUpgradeCost)
-        {
-            // Add respective amount to WeaponDamage player preference
-            int currentDamage = PlayerPrefs.GetInt(PREF_WEAPON_DAMAGE);
-            PlayerPrefs.SetInt(PREF_WEAPON_DAMAGE, currentDamage + playerWeaponDamageUpgradeAmount);
-            
-            // Subtract cost from PlayerCoinCount
-            int currentCoins = PlayerPrefs.GetInt(PREF_COINS);
-            PlayerPrefs.SetInt(PREF_COINS, currentCoins - playerWeaponDamageUpgradeCost);
-            
-            PlayerPrefs.Save();
-        }
     }
 
     public void AddToCoinCount(int count)
@@ -114,9 +99,9 @@ public class Progession : MonoBehaviour
 
     public void AddToRunCount()
     {
-        // add count amount to PlayerCoinCount player preference
+        // add count amount to RunCount player preference
         int currentRunCount = PlayerPrefs.GetInt(RUN_COUNT);
-        PlayerPrefs.SetInt(PREF_COINS, currentRunCount + 1);
+        PlayerPrefs.SetInt(RUN_COUNT, currentRunCount + 1);
         PlayerPrefs.Save();
     }
 }

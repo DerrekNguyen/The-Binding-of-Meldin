@@ -159,8 +159,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  coinPrefab: {fileID: 154997232196476715, guid: 423cd9baf3295a84186c149cb3a41f8e, type: 3}
   enemyConfig: {fileID: 11400000, guid: 7d3a5c8dcd454c9419b045620f21364b, type: 2}
+  drops:
+  - prefab: {fileID: 154997232196476715, guid: 423cd9baf3295a84186c149cb3a41f8e, type: 3}
+    chance: 1
+  - prefab: {fileID: 154997232196476715, guid: 423cd9baf3295a84186c149cb3a41f8e, type: 3}
+    chance: 0.25
+  - prefab: {fileID: 154997232196476715, guid: f847a2c0f5339bc47a95c1ec2783806e, type: 3}
+    chance: 0.25
+  dropPositionVariance: 1.5
 --- !u!1 &3094173508311449871
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,7 +186,7 @@ GameObject:
   - component: {fileID: 7352927997324401639}
   m_Layer: 6
   m_Name: Slime
-  m_TagString: Slime
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -193,7 +200,7 @@ Transform:
   m_GameObject: {fileID: 3094173508311449871}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.06, y: 4.86, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -213,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyConfig: {fileID: 11400000, guid: 7d3a5c8dcd454c9419b045620f21364b, type: 2}
-  canMove: 0
+  canMove: 1
 --- !u!114 &3197682979972217223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,7 +235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projConfig: {fileID: 11400000, guid: 921cd720410c697488aa043ee2d1aded, type: 2}
   enemyConfig: {fileID: 11400000, guid: 7d3a5c8dcd454c9419b045620f21364b, type: 2}
-  canShoot: 0
+  canShoot: 1
 --- !u!114 &5496495530171633908
 MonoBehaviour:
   m_ObjectHideFlags: 0

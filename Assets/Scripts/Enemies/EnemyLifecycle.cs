@@ -6,7 +6,6 @@ public class EnemyLifecycle : MonoBehaviour
 {
     private int maxHealth;
     [SerializeField] private int currentHealth;
-    [SerializeField] private GameObject coinPrefab;
     [SerializeField] private EnemyConfig enemyConfig; // config source
     
     private EnemyAnimator enemyAnimator;
@@ -15,6 +14,16 @@ public class EnemyLifecycle : MonoBehaviour
     public bool IsDead => isDead;
 
     private const int START_HEALTH = 2;
+
+    [System.Serializable]
+    public struct DropItem
+    {
+        public GameObject prefab;   // item to spawn
+        [Range(0f, 1f)] public float chance; // probability (0..1)
+    }
+
+    [SerializeField] private DropItem[] drops; // vector of structs for death drops
+    [SerializeField] private float dropPositionVariance = 0.5f; // random offset radius
 
     void Start()
     {
@@ -56,16 +65,16 @@ public class EnemyLifecycle : MonoBehaviour
 
             if (currentHealth <= 0)
             {
-                Die();
+                StartCoroutine(Die());
             }
 
             Destroy(other.gameObject);
         }
     }
 
-    private void Die()
+    private IEnumerator Die()
     {
-        if (isDead) return;
+        if (isDead) yield break;
         isDead = true;
         
         // Stop parent movement immediately
@@ -76,28 +85,54 @@ public class EnemyLifecycle : MonoBehaviour
                 movement.canMove = false;
             }
         }
-        
-        // Destroy hitbox immediately so no more damage can be taken
-        Destroy(gameObject);
-        
+
         // Trigger death animation if animator exists
         if (enemyAnimator != null)
         {
-            enemyAnimator.PlayDeathAnimation(coinPrefab, transform.position);
+            enemyAnimator.PlayDeathAnimation();
+            
+            // Wait one frame for animator to transition to death state
+            yield return null;
+            
+            // Now get the actual animation length from the playing state
+            float length = enemyAnimator.GetDeathAnimationLength();
+            if (length > 0f)
+            {
+                yield return new WaitForSeconds(length);
+            }
+        }
+        
+        // After animation (or immediately if no animator), handle drops and destroy
+        HandleDropsAndDestroy();
+    }
+
+    private void HandleDropsAndDestroy()
+    {
+        // Spawn configured drops by chance with position variance
+        if (drops != null && drops.Length > 0)
+        {
+            Vector2 basePos = transform.parent != null ? (Vector2)transform.parent.position : (Vector2)transform.position;
+            foreach (var item in drops)
+            {
+                if (item.prefab == null) continue;
+                if (Random.value <= item.chance)
+                {
+                    Vector2 offset = Random.insideUnitCircle * dropPositionVariance;
+                    GameObject spawned = Instantiate(item.prefab, basePos + offset, Quaternion.identity);
+                    spawned.SetActive(true);
+                }
+            }
+        }
+
+        // Finally, destroy the parent enemy object (this will also remove the hitbox)
+        if (transform.parent != null)
+        {
+            Destroy(transform.parent.gameObject);
         }
         else
         {
-            // No animator, spawn coin immediately and destroy parent
-            if (coinPrefab != null)
-            {
-                GameObject coin = Instantiate(coinPrefab, transform.position, Quaternion.identity);
-                coin.SetActive(true);
-            }
-            
-            if (transform.parent != null)
-            {
-                Destroy(transform.parent.gameObject);
-            }
+            // If no parent, destroy this hitbox as a fallback
+            Destroy(gameObject);
         }
     }
 }

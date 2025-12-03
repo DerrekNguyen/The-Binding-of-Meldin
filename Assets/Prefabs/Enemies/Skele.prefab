@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 2551639344192674915}
   m_Layer: 6
   m_Name: Skele
-  m_TagString: Slime
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 698551605733010265}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.22, y: -8.18, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyConfig: {fileID: 11400000, guid: 1cb6279e9293bed45bfd90e26d1f1b82, type: 2}
-  canMove: 0
+  canMove: 1
 --- !u!114 &4258592919997328211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projConfig: {fileID: 11400000, guid: aa6a5a7e937daf14c82f5090b6d257a3, type: 2}
   enemyConfig: {fileID: 11400000, guid: 1cb6279e9293bed45bfd90e26d1f1b82, type: 2}
-  canShoot: 0
+  canShoot: 1
 --- !u!114 &1144758899550754619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,5 +388,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  coinPrefab: {fileID: 154997232196476715, guid: 423cd9baf3295a84186c149cb3a41f8e, type: 3}
   enemyConfig: {fileID: 11400000, guid: 1cb6279e9293bed45bfd90e26d1f1b82, type: 2}
+  drops:
+  - prefab: {fileID: 154997232196476715, guid: 423cd9baf3295a84186c149cb3a41f8e, type: 3}
+    chance: 1
+  - prefab: {fileID: 154997232196476715, guid: 423cd9baf3295a84186c149cb3a41f8e, type: 3}
+    chance: 0.25
+  - prefab: {fileID: 154997232196476715, guid: f847a2c0f5339bc47a95c1ec2783806e, type: 3}
+    chance: 0.25
+  dropPositionVariance: 1.5
