@@ -72,6 +72,7 @@ public class DoPlayerDamageOnTouch : MonoBehaviour
             if (playerLifecycle != null && !playerLifecycle.IsDead)
             {
                 playerLifecycle.DecreaseHealth(damageAmount);
+                if (SoundManager.Instance != null) SoundManager.Instance.PlaySound2D(enemyConfig.hitPlayerSoundName);
             }
             
             yield return new WaitForSeconds(cooldownTime);

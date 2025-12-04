@@ -62,9 +62,15 @@ public class EnemyLifecycle : MonoBehaviour
         {
             int damage = PlayerPrefs.GetInt("PlayerWeaponDamage");
             currentHealth -= damage;
+            
+            if(currentHealth > 0)
+            {
+                if (SoundManager.Instance != null) SoundManager.Instance.PlaySound2D(enemyConfig.takeDamageSoundName);
+            }
 
             if (currentHealth <= 0)
             {
+                if (SoundManager.Instance != null) SoundManager.Instance.PlaySound2D(enemyConfig.deathSoundName);
                 StartCoroutine(Die());
             }
 

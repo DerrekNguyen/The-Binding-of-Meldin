@@ -7,13 +7,15 @@ public class FollowProj : MonoBehaviour
     private int damageAmount;
     private float lifetime;
     private float elapsedTime = 0f;
+    private string soundName;
 
-    public void Initialize(GameObject playerTarget, float projectileSpeed, int damage, float projectileLifetime)
+    public void Initialize(GameObject playerTarget, float projectileSpeed, int damage, float projectileLifetime, string bulletHitPlayerSoundName)
     {
         target = playerTarget;
         speed = projectileSpeed;
         damageAmount = damage;
         lifetime = projectileLifetime;
+        soundName = bulletHitPlayerSoundName;
 
         // Add Rigidbody2D if not present
         if (!TryGetComponent<Rigidbody2D>(out var rb))
@@ -77,6 +79,7 @@ public class FollowProj : MonoBehaviour
             if (playerLifecycle != null)
             {
                 playerLifecycle.DecreaseHealth(damageAmount);
+                if (SoundManager.Instance != null) SoundManager.Instance.PlaySound2D(soundName);
             }
             
             Destroy(gameObject);

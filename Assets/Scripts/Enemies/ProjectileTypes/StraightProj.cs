@@ -7,12 +7,14 @@ public class StraightProj : MonoBehaviour
     private int damageAmount;
     private float lifetime;
     private float elapsedTime = 0f;
+    private string soundName;
 
-    public void Initialize(GameObject playerTarget, float projectileSpeed, int damage, float projectileLifetime)
+    public void Initialize(GameObject playerTarget, float projectileSpeed, int damage, float projectileLifetime, string bulletHitPlayerSoundName)
     {
         speed = projectileSpeed;
         damageAmount = damage;
         lifetime = projectileLifetime;
+        soundName = bulletHitPlayerSoundName;
         
         // Calculate direction to player ONCE at spawn
         if (playerTarget != null)
@@ -71,6 +73,7 @@ public class StraightProj : MonoBehaviour
             if (playerLifecycle != null)
             {
                 playerLifecycle.DecreaseHealth(damageAmount);
+                if (SoundManager.Instance != null) SoundManager.Instance.PlaySound2D(soundName);
             }
             
             Destroy(gameObject);

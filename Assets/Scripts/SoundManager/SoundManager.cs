@@ -13,11 +13,10 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private SoundLibrary musicLibrary;
 
     [SerializeField] static public float globalMusicVolume = 1f; // Between 0-1.0
-    private float lastKnownGlobalMusicVolume;
+    [SerializeField] static public float lastKnownGlobalMusicVolume;
     [SerializeField] static public float globalSoundVolume = 1f; // Between 0-1.0
 
     static public bool isMusicMuted;
-    private float musicVolumeBeforeMute;
     static public bool isSoundMuted;
     
     [SerializeField] public AudioSource backgroundMusic;
@@ -183,13 +182,12 @@ public class SoundManager : MonoBehaviour
         if(!isMusicMuted)
         {
             isMusicMuted = true;
-            musicVolumeBeforeMute = globalMusicVolume;
-            globalMusicVolume = 0;            
+            backgroundMusic.mute = true;          
         }
         else
         {
-            isMusicMuted = false;
-            globalMusicVolume = musicVolumeBeforeMute;            
+            isMusicMuted = false; 
+            backgroundMusic.mute = false;           
         }
     }  
 

@@ -140,11 +140,13 @@ public class EnemyShoot : MonoBehaviour
         {
             case ProjConfig.ProjectileType.Follow:
                 FollowProj followScript = projectile.AddComponent<FollowProj>();
-                followScript.Initialize(player, projectileSpeed, bulletDamage, projectileLifetime);
+                followScript.Initialize(player, projectileSpeed, bulletDamage, projectileLifetime, projConfig.bulletHitPlayerSoundName);
+                if (SoundManager.Instance != null) SoundManager.Instance.PlaySound2D(projConfig.bulletShotSoundName);
                 break;
             case ProjConfig.ProjectileType.Straight:
                 StraightProj straightScript = projectile.AddComponent<StraightProj>();
-                straightScript.Initialize(player, projectileSpeed, bulletDamage, projectileLifetime);
+                straightScript.Initialize(player, projectileSpeed, bulletDamage, projectileLifetime, projConfig.bulletHitPlayerSoundName);
+                if (SoundManager.Instance != null) SoundManager.Instance.PlaySound2D(projConfig.bulletShotSoundName);
                 break;
         }
     }

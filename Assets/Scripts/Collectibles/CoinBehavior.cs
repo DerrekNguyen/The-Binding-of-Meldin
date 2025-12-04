@@ -8,7 +8,7 @@ public class CoinBehavior : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // TODO: Play a sound effect
+            if (SoundManager.Instance != null) SoundManager.Instance.PlaySound2D("coinPickup");
             
             // Increment the player's money count
             int currentMoney = PlayerPrefs.GetInt("PlayerCoinCount");

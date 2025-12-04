@@ -19,6 +19,7 @@ public class BossPedestal : MonoBehaviour
         if (playerInside && inputsManager != null && inputsManager.InteractPressed)
         {
             playerInitiated = true;
+            if (SoundManager.Instance != null) SoundManager.Instance.PlaySound2D("countdown");
             Debug.Log("[BossPedestal] Player initiated boss fight!");
         }
     }

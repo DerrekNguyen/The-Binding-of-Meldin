@@ -44,9 +44,73 @@ public class Progession : MonoBehaviour
     public int PlayerCoinCount => PlayerPrefs.GetInt(PREF_COINS, 0);
     public int RunCount => PlayerPrefs.GetInt(RUN_COUNT, 0);
 
+    // Fallback snapshot fields
+    private int fallbackHealth;
+    private int fallbackRevives;
+    private int fallbackWeaponDamage;
+    private int fallbackCoins;
+    private int fallbackRunCount;
+
+    private int fallbackHealthCost;
+    private int fallbackRevivesCost;
+    private int fallbackWeaponDamageCost;
+
+    private int fallbackHealthUpgrade;
+    private int fallbackRevivesUpgrade;
+    private int fallbackWeaponDamageUpgrade;
+
+    private bool fallbackCaptured = false;
+
     void Start()
     {
         CheckFirstTimePlay();
+        CaptureFallbackSnapshot();
+    }
+
+    private void CaptureFallbackSnapshot()
+    {
+        // Capture current values as fallback (after initialization)
+        fallbackHealth = PlayerPrefs.GetInt(PREF_HEALTH);
+        fallbackRevives = PlayerPrefs.GetInt(PREF_REVIVES);
+        fallbackWeaponDamage = PlayerPrefs.GetInt(PREF_WEAPON_DAMAGE);
+
+        fallbackCoins = PlayerPrefs.GetInt(PREF_COINS);
+        fallbackRunCount = PlayerPrefs.GetInt(RUN_COUNT);
+
+        fallbackHealthCost = PlayerPrefs.GetInt(PREF_HEALTH_COST);
+        fallbackRevivesCost = PlayerPrefs.GetInt(PREF_REVIVES_COST);
+        fallbackWeaponDamageCost = PlayerPrefs.GetInt(PREF_WEAPON_DAMAGE_COST);
+
+        fallbackHealthUpgrade = PlayerPrefs.GetInt(PREF_HEALTH_UPGRADE);
+        fallbackRevivesUpgrade = PlayerPrefs.GetInt(PREF_REVIVES_UPGRADE);
+        fallbackWeaponDamageUpgrade = PlayerPrefs.GetInt(PREF_WEAPON_DAMAGE_UPGRADE);
+
+        fallbackCaptured = true;
+    }
+
+    public void RestoreFallbackSnapshot()
+    {
+        if (!fallbackCaptured) return;
+
+        // Restore core values
+        PlayerPrefs.SetInt(PREF_HEALTH, fallbackHealth);
+        PlayerPrefs.SetInt(PREF_REVIVES, fallbackRevives);
+        PlayerPrefs.SetInt(PREF_WEAPON_DAMAGE, fallbackWeaponDamage);
+
+        PlayerPrefs.SetInt(PREF_COINS, fallbackCoins);
+        PlayerPrefs.SetInt(RUN_COUNT, fallbackRunCount);
+
+        // Restore costs
+        PlayerPrefs.SetInt(PREF_HEALTH_COST, fallbackHealthCost);
+        PlayerPrefs.SetInt(PREF_REVIVES_COST, fallbackRevivesCost);
+        PlayerPrefs.SetInt(PREF_WEAPON_DAMAGE_COST, fallbackWeaponDamageCost);
+
+        // Restore upgrade amounts
+        PlayerPrefs.SetInt(PREF_HEALTH_UPGRADE, fallbackHealthUpgrade);
+        PlayerPrefs.SetInt(PREF_REVIVES_UPGRADE, fallbackRevivesUpgrade);
+        PlayerPrefs.SetInt(PREF_WEAPON_DAMAGE_UPGRADE, fallbackWeaponDamageUpgrade);
+
+        PlayerPrefs.Save();
     }
 
     private void CheckFirstTimePlay()
