@@ -1254,7 +1254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundEffects:
-  - name: SOUND_EFFECTS_HERE
+  - name: Shoot
     clip: {fileID: 0}
     volume: 0
 --- !u!4 &709296794
