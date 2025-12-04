@@ -17,7 +17,7 @@ MonoBehaviour:
   baseDamage: 1
   damageMultiplierPerRun: 1.4
   touchingDamageCooldown: 1
-  moveSpeed: 6
+  moveSpeed: 5.5
   stoppingDistance: 0.5
   deathSoundName: slimeDie
   takeDamageSoundName: slimeGotHit

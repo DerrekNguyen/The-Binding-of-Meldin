@@ -1616,6 +1616,7 @@ GameObject:
   - component: {fileID: 709296794}
   - component: {fileID: 709296791}
   - component: {fileID: 709296795}
+  - component: {fileID: 709296796}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -1752,6 +1753,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &709296796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709296790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 352153891d88793468c1453f30b75396, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundEffects:
+  - name: SkeletonDeath
+    clip: {fileID: 8300000, guid: a82ed97774100b949ba0e62ac2416913, type: 3}
+    volume: 0.5
+  - name: RatDeath
+    clip: {fileID: 8300000, guid: 6cc67bb8deba3a540b218edfe3a5ddfe, type: 3}
+    volume: 0.5
+  - name: SlimeDeath
+    clip: {fileID: 8300000, guid: 49a629cd0a293c94280fc1784e38ac67, type: 3}
+    volume: 0.5
 --- !u!1 &737168579
 GameObject:
   m_ObjectHideFlags: 0

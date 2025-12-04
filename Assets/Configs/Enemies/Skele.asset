@@ -17,7 +17,7 @@ MonoBehaviour:
   baseDamage: 1
   damageMultiplierPerRun: 1.4
   touchingDamageCooldown: 1
-  moveSpeed: 8
+  moveSpeed: 6.5
   stoppingDistance: 5
   deathSoundName: skeleDie
   takeDamageSoundName: skeleGotHit

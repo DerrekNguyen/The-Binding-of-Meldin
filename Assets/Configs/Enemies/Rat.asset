@@ -17,7 +17,7 @@ MonoBehaviour:
   baseDamage: 1
   damageMultiplierPerRun: 1.4
   touchingDamageCooldown: 0.75
-  moveSpeed: 10
+  moveSpeed: 7.5
   stoppingDistance: 0.5
   deathSoundName: ratDie
   takeDamageSoundName: ratGotHit
