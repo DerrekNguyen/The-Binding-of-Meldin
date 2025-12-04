@@ -15,6 +15,9 @@ public class PlayerLifecycle : MonoBehaviour
     [SerializeField] private int maxRevives = 0;
     private int currentRevives;
 
+    [Header("Game Over UI")]
+    [SerializeField] private GameObject gameOverUI;
+
     [SerializeField] private Collider2D hitboxCollider; // Assign the player's damage hitbox
 
     public bool IsDead { get; private set; }
@@ -39,12 +42,14 @@ public class PlayerLifecycle : MonoBehaviour
         IsDead = false;
         _input = InputManager.Instance;
         _animController = GetComponent<PlayerAnimationController>();
+
+        gameOverUI.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Check for revive input when dead (only after death animation completes)
+        // Check for revive input when dead
         if (IsDead && !_isReviving && _input != null && _input.RevivePressed && currentRevives > 0)
         {
             if (_animController != null && _animController.IsDeathAnimationComplete)
@@ -53,11 +58,12 @@ public class PlayerLifecycle : MonoBehaviour
             }
         }
 
-        // Check if dead with no revives - trigger game over
+        // Check if dead with no revives
         if (IsDead && !_gameOverTriggered && currentRevives <= 0)
         {
             if (_animController != null && _animController.IsDeathAnimationComplete)
             {
+                if (SoundManager.Instance != null) SoundManager.Instance.PlaySound2D("gameOver");
                 StartCoroutine(GameOverSequence());
             }
         }
@@ -65,6 +71,7 @@ public class PlayerLifecycle : MonoBehaviour
         // Check health - set IsDead when health reaches zero
         if (currentHealth <= 0 && !IsDead)
         {
+            if (SoundManager.Instance != null) SoundManager.Instance.PlaySound2D("playerDeath");
             currentHealth = 0;
             IsDead = true;
             _isReviving = false;
@@ -97,6 +104,7 @@ public class PlayerLifecycle : MonoBehaviour
 
     private IEnumerator ReviveSequence()
     {
+        if (SoundManager.Instance != null) SoundManager.Instance.PlaySound2D("playerRevive");
         _isReviving = true;
         
         // Wait for revive animation to complete
@@ -135,8 +143,7 @@ public class PlayerLifecycle : MonoBehaviour
             PlayerPrefs.Save();
         }
 
-        // Load PreRun scene
-        SceneManager.LoadScene("PreRun");
+        gameOverUI.SetActive(true);
     }
 
     public void Revive()

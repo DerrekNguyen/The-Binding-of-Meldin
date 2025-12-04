@@ -4,6 +4,16 @@ using UnityEngine.SceneManagement;
 
 public class GeneralSceneChanges : MonoBehaviour
 {
+    public void ToMainMenuResetMadeProgress()
+    {
+        var progression = FindObjectOfType<Progession>();
+        if (progression != null)
+        {
+            progression.RestoreFallbackSnapshot();
+        }
+        SceneManager.LoadScene("MainMenu");
+    }
+
     public void ToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");

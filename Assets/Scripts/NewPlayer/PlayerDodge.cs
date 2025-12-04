@@ -43,6 +43,7 @@ public class PlayerDodge : MonoBehaviour
             if (dodgeDirection.sqrMagnitude < 0.1f)
                 dodgeDirection = _movement != null ? _movement.LastFacingDirection : Vector2.right;
 
+            if (SoundManager.Instance != null) SoundManager.Instance.PlaySound2D("playerDodge");
             StartCoroutine(DodgeRoutine(dodgeDirection.normalized));
         }
     }

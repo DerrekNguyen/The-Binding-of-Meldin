@@ -94,6 +94,7 @@ public class RoomController : MonoBehaviour
 
     private void OnPlayerEnterRoom()
     {
+        if (SoundManager.Instance != null) SoundManager.Instance.PlaySound2D("roomEnterSound");
         roomActive = true;
         
         // Enable room barrier immediately
@@ -173,6 +174,7 @@ public class RoomController : MonoBehaviour
         {
             roomBarrier.SetActive(false);
         }
+        if (SoundManager.Instance != null) SoundManager.Instance.PlaySound2D("roomCleared");
     }
 
     public bool IsRoomCleared()

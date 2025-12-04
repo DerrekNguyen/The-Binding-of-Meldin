@@ -93,6 +93,8 @@ public class Shoot : MonoBehaviour
             return;
         }
 
+        if (SoundManager.Instance != null) SoundManager.Instance.PlaySound2D("playerShoot");
+
         Transform spawnPoint = firePoint != null ? firePoint : transform;
         
         // Get mouse world position

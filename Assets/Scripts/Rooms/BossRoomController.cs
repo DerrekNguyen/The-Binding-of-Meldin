@@ -27,6 +27,8 @@ public class BossRoomController : MonoBehaviour
     private Coroutine bossCheckCoroutine = null;
     private int enemyCount = 0;
 
+    private bool roomFound = false;
+
     void Start()
     {
         // Find objText by navigating through HudCanvas hierarchy
@@ -103,6 +105,8 @@ public class BossRoomController : MonoBehaviour
             }
             exit.SetActive(false);
         }
+
+        roomFound = false;
     }
 
     void Update()
@@ -152,7 +156,12 @@ public class BossRoomController : MonoBehaviour
         {
             if(!exitSpawned) 
             {
+                if(!roomFound) 
+                {
                 objText.text = "Start Boss";
+                if (SoundManager.Instance != null) SoundManager.Instance.PlaySound2D("bossRoomEnter");                    
+                }
+                roomFound = true;
             }
         }
     }
@@ -200,7 +209,7 @@ public class BossRoomController : MonoBehaviour
         }
 
         bossSpawn = true;
-        objText.text = "! Fight !";
+        objText.text = "Fight!";
     }
 
     private IEnumerator VerifyBossCleared()
@@ -226,6 +235,7 @@ public class BossRoomController : MonoBehaviour
         {
             exit.transform.position = transform.position;
             exit.SetActive(true);
+            if (SoundManager.Instance != null) SoundManager.Instance.PlaySound2D("levelComplete");
         }
 
         objText.text = "Leave";

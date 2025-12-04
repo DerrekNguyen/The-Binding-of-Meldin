@@ -8,6 +8,8 @@ public class HeartBehavior : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            if (SoundManager.Instance != null) SoundManager.Instance.PlaySound2D("healthPickup");
+
             int maxHealth = PlayerPrefs.GetInt("PlayerHealth");
             int healAmount = Mathf.CeilToInt(maxHealth * 0.10f);
 

@@ -205,7 +205,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.003960192, y: 0.0052802265}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -406,10 +406,8 @@ MonoBehaviour:
   currentHealth: 0
   enemyConfig: {fileID: 11400000, guid: 693fcefac8ce86d4abd2702e4d506c3e, type: 2}
   drops:
-  - prefab: {fileID: 3094173508311449871, guid: d56d4578ef4f68649912c33da3202971, type: 3}
+  - prefab: {fileID: 3094173508311449871, guid: 07a84f2d3877c5d44b7fd364ff2c0689, type: 3}
     chance: 1
-  - prefab: {fileID: 3094173508311449871, guid: d56d4578ef4f68649912c33da3202971, type: 3}
+  - prefab: {fileID: 3094173508311449871, guid: 07a84f2d3877c5d44b7fd364ff2c0689, type: 3}
     chance: 1
-  - prefab: {fileID: 3094173508311449871, guid: d56d4578ef4f68649912c33da3202971, type: 3}
-    chance: 1
-  dropPositionVariance: 3
+  dropPositionVariance: 5
