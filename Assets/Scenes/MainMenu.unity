@@ -1253,10 +1253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 352153891d88793468c1453f30b75396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundEffects:
-  - name: Shoot
-    clip: {fileID: 0}
-    volume: 0
+  soundEffects: []
 --- !u!4 &709296794
 Transform:
   m_ObjectHideFlags: 0
