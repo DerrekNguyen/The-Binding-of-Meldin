@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Animator))]
 public class Shoot : MonoBehaviour
@@ -33,14 +34,20 @@ public class Shoot : MonoBehaviour
         }
     }
 
-    void Update()
+    void LateUpdate()
     {
         if (_input == null || !_canShoot || _isShooting) return;
 
-        if (_input.ShootPressed)
+        // Don't shoot if game is paused or mouse is over UI
+        if (!InGameUiManager.isPaused && !IsPointerOverUI() && _input.ShootPressed)
         {
             StartCoroutine(ShootRoutine());
         }
+    }
+
+    private bool IsPointerOverUI()
+    {
+        return EventSystem.current != null && EventSystem.current.IsPointerOverGameObject();
     }
 
     private IEnumerator ShootRoutine()
