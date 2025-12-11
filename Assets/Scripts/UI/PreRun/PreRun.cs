@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+// PreRun screen UI
+
 public class PreRun : MonoBehaviour
 {
     [Header("Coin Text")]
@@ -16,13 +18,10 @@ public class PreRun : MonoBehaviour
 
     private Progession progression;
     
-    // Start is called before the first frame update
     void Start()
     {
-        // Find the Progression script in the scene
         progression = FindObjectOfType<Progession>();
 
-        // Ensure reset menu starts hidden
         if (resetMenu != null)
         {
             resetMenu.SetActive(false);
@@ -30,7 +29,6 @@ public class PreRun : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         UpdateCoinDisplay();

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Handles players lifecycle
+
 [RequireComponent(typeof(PlayerAnimationController))]
 public class PlayerLifecycle : MonoBehaviour
 {
@@ -18,7 +20,7 @@ public class PlayerLifecycle : MonoBehaviour
     [Header("Game Over UI")]
     [SerializeField] private GameObject gameOverUI;
 
-    [SerializeField] private Collider2D hitboxCollider; // Assign the player's damage hitbox
+    [SerializeField] private Collider2D hitboxCollider;
 
     public bool IsDead { get; private set; }
     public bool IsReviving => _isReviving;
@@ -31,7 +33,6 @@ public class PlayerLifecycle : MonoBehaviour
     private bool _isReviving = false;
     private bool _gameOverTriggered = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         maxHealth = PlayerPrefs.GetInt("PlayerHealth");
@@ -46,10 +47,8 @@ public class PlayerLifecycle : MonoBehaviour
         gameOverUI.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // Check for revive input when dead
         if (IsDead && !_isReviving && _input != null && _input.RevivePressed && currentRevives > 0)
         {
             if (_animController != null && _animController.IsDeathAnimationComplete)
@@ -58,7 +57,6 @@ public class PlayerLifecycle : MonoBehaviour
             }
         }
 
-        // Check if dead with no revives
         if (IsDead && !_gameOverTriggered && currentRevives <= 0)
         {
             if (_animController != null && _animController.IsDeathAnimationComplete)
@@ -68,7 +66,6 @@ public class PlayerLifecycle : MonoBehaviour
             }
         }
 
-        // Check health - set IsDead when health reaches zero
         if (currentHealth <= 0 && !IsDead)
         {
             if (SoundManager.Instance != null) SoundManager.Instance.PlaySound2D("playerDeath");
@@ -107,13 +104,11 @@ public class PlayerLifecycle : MonoBehaviour
         if (SoundManager.Instance != null) SoundManager.Instance.PlaySound2D("playerRevive");
         _isReviving = true;
         
-        // Wait for revive animation to complete
         while (_animController != null && !_animController.IsReviveAnimationComplete)
         {
             yield return null;
         }
         
-        // Apply revive changes
         IsDead = false;
         _isReviving = false;
         currentHealth = maxHealth;
@@ -127,7 +122,6 @@ public class PlayerLifecycle : MonoBehaviour
     {
         _gameOverTriggered = true;
 
-        // Optional: wait a moment before transitioning
         yield return new WaitForSeconds(3f);
 
         // Reset progression
@@ -138,7 +132,6 @@ public class PlayerLifecycle : MonoBehaviour
         }
         else
         {
-            // Fallback if Progression script not in scene
             PlayerPrefs.DeleteAll();
             PlayerPrefs.Save();
         }

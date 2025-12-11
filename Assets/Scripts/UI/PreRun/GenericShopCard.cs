@@ -4,6 +4,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
+// Shop card script for prerun screen
+
 public class GenericShopCard : MonoBehaviour
 {
     [Header("Current Tab")]
@@ -24,13 +26,11 @@ public class GenericShopCard : MonoBehaviour
     private const string coinsPlayerPrefString = "PlayerCoinCount";
 
     
-    // Start is called before the first frame update
     void Start()
     {
         UpdateUI();
     }
 
-    // Update is called once per frame
     void Update()
     {
         UpdateUI();
@@ -38,21 +38,18 @@ public class GenericShopCard : MonoBehaviour
 
     private void UpdateUI()
     {
-        // Update current value
         if (current != null)
         {
             int currentValue = PlayerPrefs.GetInt(currentPlayerPrefString, 0);
             current.text = currentPrefix + currentValue;
         }
 
-        // Update cost value
         if (cost != null)
         {
             int costValue = PlayerPrefs.GetInt(costPlayerPrefString, 0);
             cost.text = costPrefix + costValue;
         }
 
-        // Update increase value
         if (increase != null)
         {
             int increaseValue = PlayerPrefs.GetInt(increasePlayerPrefString, 0);
@@ -65,7 +62,6 @@ public class GenericShopCard : MonoBehaviour
         int cost = PlayerPrefs.GetInt(costPlayerPrefString);
         int currentCoins = PlayerPrefs.GetInt(coinsPlayerPrefString);
         
-        // Check if player has enough coins
         if (currentCoins >= cost)
         {
             int currentAmount = PlayerPrefs.GetInt(currentPlayerPrefString);

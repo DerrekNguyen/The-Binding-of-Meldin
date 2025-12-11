@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Handles normal room behavior (Enemies and locking)
+
 public class RoomController : MonoBehaviour
 {
     [Header("Enemy Setup")]
@@ -40,7 +42,6 @@ public class RoomController : MonoBehaviour
 
     void Update()
     {
-        // Check if all enemies are dead
         if (roomActive && !roomCleared && AreAllEnemiesDead())
         {
             OnRoomCleared();
@@ -49,7 +50,6 @@ public class RoomController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Boss detection and immediate replacement
         if (!replacedWithBossController && other.CompareTag("Boss"))
         {
             ReplaceWithBossController(other.gameObject);
@@ -67,19 +67,16 @@ public class RoomController : MonoBehaviour
         if (replacedWithBossController) return;
         replacedWithBossController = true;
 
-        // Delete the detected boss
         if (boss != null)
         {
             Destroy(boss);
         }
 
-        // Add BossRoomController to the same GameObject
         if (gameObject.GetComponent<BossRoomController>() == null)
         {
             gameObject.AddComponent<BossRoomController>();
         }
 
-        // Delete all enemies in the list
         foreach (GameObject enemy in enemies)
         {
             if (enemy != null)
@@ -88,7 +85,6 @@ public class RoomController : MonoBehaviour
             }
         }
 
-        // Remove this RoomController component
         Destroy(this);
     }
 
@@ -97,13 +93,11 @@ public class RoomController : MonoBehaviour
         if (SoundManager.Instance != null) SoundManager.Instance.PlaySound2D("roomEnterSound");
         roomActive = true;
         
-        // Enable room barrier immediately
         if (roomBarrier != null && roomBarrier != gameObject)
         {
             roomBarrier.SetActive(true);
         }
         
-        // Activate all enemies after a short delay
         StartCoroutine(ActivateEnemiesWithDelay());
     }
 

@@ -4,6 +4,8 @@ using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// In game UI manager
+
 public class InGameUiManager : MonoBehaviour
 {
     public GameObject mainHUDUI;
@@ -30,13 +32,11 @@ public class InGameUiManager : MonoBehaviour
         isPaused = false;
     }
 
-    // Shutdown Game Button Press
     public void OnGameShutdown()
     {
         Application.Quit();
     }
 
-    // Pause Button Press
     public void OnPause()
     {
         if(pauseUI != null)
@@ -54,7 +54,6 @@ public class InGameUiManager : MonoBehaviour
         isPaused = true;
     }
 
-    // Unpause Button Press
     public void OnUnpause()
     {
         if(pauseUI != null)

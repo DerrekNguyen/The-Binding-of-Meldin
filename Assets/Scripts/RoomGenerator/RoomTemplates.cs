@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Handles room templates
+
 public class RoomTemplates : MonoBehaviour
 {
     [Header("Room Prefabs")]

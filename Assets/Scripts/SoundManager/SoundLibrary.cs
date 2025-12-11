@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Sound Library
+// Sound Library Class
 
-// Sound effect struct
 [System.Serializable]
 public struct SoundEffect
 {
@@ -16,10 +15,8 @@ public struct SoundEffect
 
 public class SoundLibrary : MonoBehaviour
 {
-    // Array of sound effects
     public SoundEffect[] soundEffects;
 
-    // Look up audio clip from name
     public AudioClip GetClipFromName(string name)
     {
         foreach( var SoundEffect in soundEffects) {
@@ -31,7 +28,6 @@ public class SoundLibrary : MonoBehaviour
         return null;
     }
 
-    // Look up audio volume from name
     public float GetVolumeFromName(string name)
     {
         foreach( var SoundEffect in soundEffects) {

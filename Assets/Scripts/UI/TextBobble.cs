@@ -1,9 +1,11 @@
 using UnityEngine;
 
+// Text Bobble
+
 public class BobbingTitle : MonoBehaviour
 {
-    public float amplitude = 10f;  // How far it moves up/down
-    public float frequency = 2f;   // How fast it bobs
+    public float amplitude = 10f;
+    public float frequency = 2f;
 
     private Vector3 startPos;
 

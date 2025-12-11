@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Handles player animations based on movement and lifecycle information
+
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(PlayerMovement))]
@@ -27,7 +29,6 @@ public class PlayerAnimationController : MonoBehaviour
     public bool IsDeathAnimationComplete { get; private set; }
     public bool IsReviveAnimationComplete { get; private set; }
 
-    // Start is called before the first frame update
     void Start()
     {
         _animator = GetComponent<Animator>();
@@ -35,16 +36,13 @@ public class PlayerAnimationController : MonoBehaviour
         _movement = GetComponent<PlayerMovement>();
         _lifecycle = GetComponent<PlayerLifecycle>();
 
-        // Cache dodge animation length from animator controller
         DodgeAnimationLength = GetAnimationLength(dodgeStateName);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (_movement == null || _lifecycle == null) return;
 
-        // Death state - play death animation when dead and NOT reviving
         if (_lifecycle.IsDead && !_lifecycle.IsReviving)
         {
             if (!_hasPlayedDeath)
@@ -60,7 +58,6 @@ public class PlayerAnimationController : MonoBehaviour
             return;
         }
 
-        // Revive state - play revive animation when reviving (only once)
         if (_lifecycle.IsReviving && _hasPlayedDeath && !_isPlayingRevive && !IsReviveAnimationComplete)
         {
             _animator.speed = 1f;
@@ -74,26 +71,21 @@ public class PlayerAnimationController : MonoBehaviour
             return;
         }
 
-        // Stay in revive state until complete
         if (_lifecycle.IsReviving) return;
 
-        // Reset for next cycle when fully alive
         if (!_lifecycle.IsDead && IsReviveAnimationComplete)
         {
             IsReviveAnimationComplete = false;
         }
 
-        // Dodge state
         if (PlayerDodge.IsDodging)
         {
             _animator.Play(dodgeStateName);
             return;
         }
 
-        // Movement states
         _animator.Play(_movement.IsMoving ? moveStateName : idleStateName);
 
-        // Flip sprite based on last facing direction
         if (_movement.LastFacingDirection.x != 0)
         {
             _spriteRenderer.flipX = _movement.LastFacingDirection.x > 0;

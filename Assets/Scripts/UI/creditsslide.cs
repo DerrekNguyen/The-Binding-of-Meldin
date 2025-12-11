@@ -2,12 +2,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
+// UI text sliding (I dont think this is used anymore)
+
 public class CreditScroller : MonoBehaviour
 {
-    public RectTransform[] creditPanels; // Assign UI panels or Text objects
+    public RectTransform[] creditPanels;
     public float slideDuration = 1f;
     public float displayTime = 2f;
-    public float offscreenOffset = 1000f; // How far offscreen it starts/ends
+    public float offscreenOffset = 1000f;
 
     private int currentIndex = 0;
 
@@ -22,19 +24,14 @@ public class CreditScroller : MonoBehaviour
         {
             RectTransform panel = creditPanels[currentIndex];
 
-            // Slide in
             yield return StartCoroutine(Slide(panel, -offscreenOffset, 0));
 
-            // Stay visible
             yield return new WaitForSeconds(displayTime);
 
-            // Slide out
             yield return StartCoroutine(Slide(panel, 0, offscreenOffset));
 
-            // Reset position for reuse
             panel.anchoredPosition = new Vector2(-offscreenOffset, panel.anchoredPosition.y);
 
-            // Move to next panel
             currentIndex = (currentIndex + 1) % creditPanels.Length;
         }
     }

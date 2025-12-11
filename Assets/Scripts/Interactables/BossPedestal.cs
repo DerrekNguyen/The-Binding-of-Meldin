@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Handles the boss pedestal behavior
+
 public class BossPedestal : MonoBehaviour
 {
     public bool playerInside = false;

@@ -10,7 +10,6 @@ public class GeneralNextAndPrevious : MonoBehaviour
     [SerializeField] private GameObject[] objectArray;
     [SerializeField] private int currentLevelIndex = 0;
 
-    // Start
     void Start()
     {
         foreach(GameObject obj in objectArray)
@@ -20,7 +19,6 @@ public class GeneralNextAndPrevious : MonoBehaviour
         objectArray[currentLevelIndex].SetActive(true);
     }
 
-    // Increment up the array
     public void Increment()
     {
         objectArray[currentLevelIndex].SetActive(false);
@@ -33,7 +31,6 @@ public class GeneralNextAndPrevious : MonoBehaviour
         objectArray[currentLevelIndex].SetActive(true);
     }
     
-    // Decrement down the array
     public void Decrement()
     {
         objectArray[currentLevelIndex].SetActive(false);

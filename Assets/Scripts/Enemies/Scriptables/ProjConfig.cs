@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Projectile config scriptable object
+
 [CreateAssetMenu(menuName = "Scriptables/ProjScriptable")]
 public class ProjConfig : ScriptableObject
 {

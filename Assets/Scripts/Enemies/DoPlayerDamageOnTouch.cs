@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Handles enemies doing damage when they touch player
+
 public class DoPlayerDamageOnTouch : MonoBehaviour
 {
     private int damageAmount = 1;
@@ -36,7 +38,6 @@ public class DoPlayerDamageOnTouch : MonoBehaviour
     {
         if (other.CompareTag("Player") && other.gameObject.name == "Hitbox")
         {
-            // Do not start if enemy is dead
             if (enemyLifecycle != null && enemyLifecycle.IsDead) return;
 
             PlayerLifecycle playerLifecycle = other.GetComponentInParent<PlayerLifecycle>();
@@ -63,7 +64,6 @@ public class DoPlayerDamageOnTouch : MonoBehaviour
     {
         while (true)
         {
-            // Stop if enemy died
             if (enemyLifecycle != null && enemyLifecycle.IsDead)
             {
                 break;

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+// Enemy card for prerun screen
+
 public class EnemyCard : MonoBehaviour
 {
     [Header("Run")]
@@ -38,14 +40,12 @@ public class EnemyCard : MonoBehaviour
 
     private void UpdateUI()
     {
-        // Update run count
         if (run != null)
         {
             int runCount = PlayerPrefs.GetInt(runCountPlayerPref, 0);
             run.text = runPrefix + runCount;
         }
 
-        // Update enemy stats
         if (enemyConfig != null)
         {
             if (enemyHP != null)
@@ -59,7 +59,6 @@ public class EnemyCard : MonoBehaviour
             }
         }
 
-        // Update boss stats
         if (bossConfig != null)
         {
             if (bossHP != null)

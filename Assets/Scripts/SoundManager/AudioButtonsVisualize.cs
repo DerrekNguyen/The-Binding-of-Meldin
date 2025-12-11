@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Handles audio button visuals
+
 [RequireComponent(typeof(Image))]
 public class MusicButton : MonoBehaviour
 {
-    // Sprites for muted and unmuted states
     [SerializeField] private Sprite mutedSprite;
     [SerializeField] private Sprite unmutedSprite;
     [SerializeField] private bool isMusicButton;
 
-    // Reference to this GameObject's Image component
     private Image buttonImage;
 
     void Awake()
@@ -25,7 +25,6 @@ public class MusicButton : MonoBehaviour
 
     void Start()
     {
-        // Make sure Sprites exist
         if (mutedSprite == null || unmutedSprite == null)
         {
             Debug.LogWarning("Muted or Unmuted Sprite is not assigned in the inspector.");

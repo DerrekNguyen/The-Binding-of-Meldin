@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+// UI Image animator
+
 [RequireComponent(typeof(Image))]
 public class UISpritesAnimation : MonoBehaviour
 {

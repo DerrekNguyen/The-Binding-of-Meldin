@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Handles spawning rooms
+
 public class RoomSpawner : MonoBehaviour
 {
     public int openingDirection;

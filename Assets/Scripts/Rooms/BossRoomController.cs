@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+// Handles boss room behavior and objectives
 public class BossRoomController : MonoBehaviour
 {
     [Header("Object Names")]
@@ -31,7 +32,6 @@ public class BossRoomController : MonoBehaviour
 
     void Start()
     {
-        // Find objText by navigating through HudCanvas hierarchy
         GameObject hudCanvas = GameObject.Find("HudCanvas");
         if (hudCanvas != null)
         {
@@ -50,7 +50,6 @@ public class BossRoomController : MonoBehaviour
             }
         }
 
-        // Initialize doors by finding the Doors tilemap in the TileMap gameobject in shared parent
         if (doors == null)
         {
             Transform parent = transform.parent;
@@ -68,13 +67,11 @@ public class BossRoomController : MonoBehaviour
             }
         }
 
-        // Ensure doors start disabled
         if (doors != null)
         {
             doors.SetActive(false);
         }
 
-        // Find boss pedestal by name (including inactive objects)
         bossPedestal = FindInactiveObjectByName(bossPedestalName);
         if (bossPedestal != null)
         {
@@ -83,11 +80,9 @@ public class BossRoomController : MonoBehaviour
             pedestalScript = bossPedestal.GetComponent<BossPedestal>();
         }
 
-        // Find boss and exit by name (keep inactive for now)
         boss = FindInactiveObjectByName(bossName);
         if (boss != null)
         {
-            // IMPORTANT: Unparent the boss from any room hierarchy to prevent cascade deletion
             if (boss.transform.parent != null)
             {
                 boss.transform.SetParent(null);
@@ -98,7 +93,6 @@ public class BossRoomController : MonoBehaviour
         exit = FindInactiveObjectByName(exitName);
         if (exit != null)
         {
-            // Unparent exit as well
             if (exit.transform.parent != null)
             {
                 exit.transform.SetParent(null);
@@ -111,31 +105,25 @@ public class BossRoomController : MonoBehaviour
 
     void Update()
     {
-        // Phase 1: Boss not spawned yet
         if (!bossSpawn)
         {
-            // Check if player initiated on pedestal
             if (pedestalScript != null && pedestalScript.playerInitiated && !countdownStarted)
             {
                 StartCoroutine(StartBossCountdown());
             }
         }
-        // Phase 2: Boss spawned, check if cleared
         else if (!bossCleared)
         {
-            // Start verification coroutine if no enemies and not already checking
             if (enemyCount == 0 && bossCheckCoroutine == null)
             {
                 bossCheckCoroutine = StartCoroutine(VerifyBossCleared());
             }
-            // Cancel verification if enemies appear again
             else if (enemyCount > 0 && bossCheckCoroutine != null)
             {
                 StopCoroutine(bossCheckCoroutine);
                 bossCheckCoroutine = null;
             }
         }
-        // Phase 3: Boss cleared, spawn exit
         else if (!exitSpawned)
         {
             SpawnExit();
@@ -178,13 +166,11 @@ public class BossRoomController : MonoBehaviour
     {
         countdownStarted = true;
 
-        // Destroy pedestal
         if (bossPedestal != null)
         {
             Destroy(bossPedestal);
         }
 
-        // Activate doors
         if (doors != null)
         {
             doors.SetActive(true);
@@ -201,7 +187,6 @@ public class BossRoomController : MonoBehaviour
             countdown -= 0.1f;
         }
 
-        // Teleport boss to center and activate
         if (boss != null)
         {
             boss.transform.position = transform.position;
@@ -214,10 +199,8 @@ public class BossRoomController : MonoBehaviour
 
     private IEnumerator VerifyBossCleared()
     {
-        // Wait 3 seconds to ensure no new enemies spawn
         yield return new WaitForSeconds(3f);
         
-        // Double-check enemies are still dead after waiting
         if (enemyCount == 0)
         {
             bossCleared = true;
@@ -230,7 +213,6 @@ public class BossRoomController : MonoBehaviour
     {
         exitSpawned = true;
 
-        // Teleport exit to center and activate
         if (exit != null)
         {
             exit.transform.position = transform.position;
@@ -243,12 +225,10 @@ public class BossRoomController : MonoBehaviour
 
     private GameObject FindInactiveObjectByName(string name)
     {
-        // Find all objects including inactive ones
         GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
         
         foreach (GameObject obj in allObjects)
         {
-            // Filter out prefabs and editor-only objects
             if (obj.hideFlags == HideFlags.None && obj.scene.IsValid() && obj.name == name)
             {
                 return obj;

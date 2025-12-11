@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Handles enemy movement
+
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
 public class EnemyMovement : MonoBehaviour
@@ -13,7 +15,7 @@ public class EnemyMovement : MonoBehaviour
     private  float speed;
     private float stoppingDistance;
 
-    [SerializeField] private EnemyConfig enemyConfig; // config source
+    [SerializeField] private EnemyConfig enemyConfig;
     
     private bool playerWasDead = false;
     private bool currentlyRetreating = false;
@@ -30,23 +32,19 @@ public class EnemyMovement : MonoBehaviour
         {
             playerLifecycle = player.GetComponent<PlayerLifecycle>();
             
-            // If not found on player, try to find it in children
             if (playerLifecycle == null)
             {
                 playerLifecycle = player.GetComponentInChildren<PlayerLifecycle>();
             }
             
-            // If still not found, search all objects (last resort)
             if (playerLifecycle == null)
             {
                 playerLifecycle = FindObjectOfType<PlayerLifecycle>();
             }
         }
         
-        // Get EnemyLifecycle from child (hitbox)
         enemyLifecycle = GetComponentInChildren<EnemyLifecycle>();
         
-        // Pull movement settings from EnemyConfig (fallback to defaults if missing)
         if (enemyConfig != null)
         {
             speed = enemyConfig.moveSpeed;
@@ -67,7 +65,6 @@ public class EnemyMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Check if game is paused
         if (InGameUiManager.isPaused)
         {
             rb.velocity = Vector2.zero;
@@ -75,13 +72,11 @@ public class EnemyMovement : MonoBehaviour
             return;
         }
         
-        // Check if enemy is dead
         if (enemyLifecycle != null && enemyLifecycle.IsDead)
         {
             canMove = false;
         }
         
-        // Don't move if not allowed
         if (!canMove)
         {
             rb.velocity = Vector2.zero;
@@ -121,7 +116,6 @@ public class EnemyMovement : MonoBehaviour
 
         playerWasDead = playerIsDeadNow;
 
-        // Stop all movement if retreating or player is dead
         if (currentlyRetreating || playerIsDeadNow)
         {
             rb.velocity = Vector2.zero;
@@ -147,7 +141,6 @@ public class EnemyMovement : MonoBehaviour
     {
         currentlyRetreating = true;
         
-        // Disable physics and collisions
         rb.isKinematic = true;
         rb.velocity = Vector2.zero;
         
@@ -157,21 +150,18 @@ public class EnemyMovement : MonoBehaviour
             col.enabled = false;
         }
         
-        // Calculate retreat direction
         Vector2 awayDirection = ((Vector2)transform.position - (Vector2)player.transform.position).normalized;
         if (awayDirection.magnitude < 0.1f)
         {
             awayDirection = Random.insideUnitCircle.normalized;
         }
         
-        // Add random angle variation for spread
         float randomAngle = Random.Range(-45f, 45f) * Mathf.Deg2Rad;
         awayDirection = new Vector2(
             awayDirection.x * Mathf.Cos(randomAngle) - awayDirection.y * Mathf.Sin(randomAngle),
             awayDirection.x * Mathf.Sin(randomAngle) + awayDirection.y * Mathf.Cos(randomAngle)
         );
         
-        // Animate retreat
         Vector2 startPosition = transform.position;
         Vector2 targetPosition = startPosition + (awayDirection * Random.Range(2.5f, 3.5f));
         float elapsed = 0f;
@@ -186,7 +176,6 @@ public class EnemyMovement : MonoBehaviour
         
         transform.position = targetPosition;
         
-        // Re-enable physics and collisions
         foreach (var col in colliders)
         {
             col.enabled = true;

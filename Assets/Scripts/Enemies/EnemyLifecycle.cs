@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Handles enemies lifecycle
+
 public class EnemyLifecycle : MonoBehaviour
 {
     private int maxHealth;
     [SerializeField] private int currentHealth;
-    [SerializeField] private EnemyConfig enemyConfig; // config source
+    [SerializeField] private EnemyConfig enemyConfig;
     
     private EnemyAnimator enemyAnimator;
     private bool isDead = false;
@@ -18,18 +20,17 @@ public class EnemyLifecycle : MonoBehaviour
     [System.Serializable]
     public struct DropItem
     {
-        public GameObject prefab;   // item to spawn
-        [Range(0f, 1f)] public float chance; // probability (0..1)
+        public GameObject prefab;
+        [Range(0f, 1f)] public float chance;
     }
 
-    [SerializeField] private DropItem[] drops; // vector of structs for death drops
-    [SerializeField] private float dropPositionVariance = 0.5f; // random offset radius
+    [SerializeField] private DropItem[] drops;
+    [SerializeField] private float dropPositionVariance = 0.5f;
 
     void Start()
     {
         int runCount = PlayerPrefs.GetInt("RunCount");
         
-        // Use config if available, otherwise fallback
         if (enemyConfig != null)
         {
             maxHealth = enemyConfig.GetScaledHealth();
@@ -47,7 +48,6 @@ public class EnemyLifecycle : MonoBehaviour
             rb.gravityScale = 0f;
         }
         
-        // Find animator on parent
         if (transform.parent != null)
         {
             enemyAnimator = transform.parent.GetComponent<EnemyAnimator>();
@@ -83,7 +83,6 @@ public class EnemyLifecycle : MonoBehaviour
         if (isDead) yield break;
         isDead = true;
         
-        // Stop parent movement immediately
         if (transform.parent != null)
         {
             if (transform.parent.TryGetComponent<EnemyMovement>(out var movement))
@@ -92,15 +91,12 @@ public class EnemyLifecycle : MonoBehaviour
             }
         }
 
-        // Trigger death animation if animator exists
         if (enemyAnimator != null)
         {
             enemyAnimator.PlayDeathAnimation();
             
-            // Wait one frame for animator to transition to death state
             yield return null;
             
-            // Now get the actual animation length from the playing state
             float length = enemyAnimator.GetDeathAnimationLength();
             if (length > 0f)
             {
@@ -108,13 +104,11 @@ public class EnemyLifecycle : MonoBehaviour
             }
         }
         
-        // After animation (or immediately if no animator), handle drops and destroy
         HandleDropsAndDestroy();
     }
 
     private void HandleDropsAndDestroy()
     {
-        // Spawn configured drops by chance with position variance
         if (drops != null && drops.Length > 0)
         {
             Vector2 basePos = transform.parent != null ? (Vector2)transform.parent.position : (Vector2)transform.position;
@@ -130,14 +124,12 @@ public class EnemyLifecycle : MonoBehaviour
             }
         }
 
-        // Finally, destroy the parent enemy object (this will also remove the hitbox)
         if (transform.parent != null)
         {
             Destroy(transform.parent.gameObject);
         }
         else
         {
-            // If no parent, destroy this hitbox as a fallback
             Destroy(gameObject);
         }
     }

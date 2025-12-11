@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+// Updates in game hud
 public class UpdateInGameHud : MonoBehaviour
 {
     [Header("HUD Text Elements")]
@@ -33,7 +34,6 @@ public class UpdateInGameHud : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (runText != null)

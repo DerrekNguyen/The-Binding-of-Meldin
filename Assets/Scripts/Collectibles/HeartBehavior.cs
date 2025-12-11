@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Handles picking up a heart behavior
+
 public class HeartBehavior : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)

@@ -1,5 +1,7 @@
 using UnityEngine;
 
+// Handles calling MoveToRoom on room trigger enter
+
 public class RoomPlaySpace : MonoBehaviour
 {
     public Transform roomCenter;

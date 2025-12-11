@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Handles the exit behavior
+
 public class Exit : MonoBehaviour
 {
     public bool playerInside = false;
@@ -24,12 +26,10 @@ public class Exit : MonoBehaviour
         
         if(playerInitiated)
         {
-            // Increment run count
             int currentRunCount = PlayerPrefs.GetInt("RunCount", 0);
             PlayerPrefs.SetInt("RunCount", currentRunCount + 1);
             PlayerPrefs.Save();
 
-            // Load PreRun scene
             SceneManager.LoadScene("PreRun");
         }
     }

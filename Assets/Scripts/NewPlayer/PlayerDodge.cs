@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
 
+// Handles player dodging
+
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(PlayerAnimationController))]
 [RequireComponent(typeof(PlayerMovement))]
@@ -9,7 +11,7 @@ public class PlayerDodge : MonoBehaviour
     [Header("Dodge Settings")]
     [SerializeField] private float dodgeSpeed = 15f;
     [SerializeField] private float dodgeCooldown = 0.5f;
-    [SerializeField] private Collider2D hitboxCollider; // Assign the player's damage hitbox
+    [SerializeField] private Collider2D hitboxCollider;
 
     private Rigidbody2D _rb;
     private InputManager _input;
@@ -39,7 +41,6 @@ public class PlayerDodge : MonoBehaviour
         {
             Vector2 dodgeDirection = _input.Move;
             
-            // If no input, dodge in last facing direction
             if (dodgeDirection.sqrMagnitude < 0.1f)
                 dodgeDirection = _movement != null ? _movement.LastFacingDirection : Vector2.right;
 
@@ -53,17 +54,13 @@ public class PlayerDodge : MonoBehaviour
         _canDodge = false;
         IsDodging = true;
 
-        // Disable hitbox
         if (hitboxCollider != null)
             hitboxCollider.enabled = false;
 
-        // Apply dodge velocity
         _rb.velocity = direction * dodgeSpeed;
 
-        // Wait one frame for animation to start
         yield return null;
 
-        // Get actual animation length from animator (accounts for speed multipliers)
         float dodgeDuration = 0.3f;
         if (_animController != null)
         {
@@ -73,16 +70,13 @@ public class PlayerDodge : MonoBehaviour
 
         yield return new WaitForSeconds(dodgeDuration);
 
-        // Stop dodge movement
         _rb.velocity = Vector2.zero;
 
-        // Re-enable hitbox
         if (hitboxCollider != null)
             hitboxCollider.enabled = true;
 
         IsDodging = false;
 
-        // Cooldown
         yield return new WaitForSeconds(dodgeCooldown);
         _canDodge = true;
     }

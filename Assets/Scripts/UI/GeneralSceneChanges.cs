@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// General scene change functions
 public class GeneralSceneChanges : MonoBehaviour
 {
     public void ToMainMenuResetMadeProgress()

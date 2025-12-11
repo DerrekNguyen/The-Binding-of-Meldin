@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Sound Manager Script
+// Handles background music and dynamic creation of audio sources
 
 public class SoundManager : MonoBehaviour
 {
@@ -12,20 +12,19 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private SoundLibrary soundLibrary;
     [SerializeField] private SoundLibrary musicLibrary;
 
-    [SerializeField] static public float globalMusicVolume = 1f; // Between 0-1.0
+    [SerializeField] static public float globalMusicVolume = 1f;
     [SerializeField] static public float lastKnownGlobalMusicVolume;
-    [SerializeField] static public float globalSoundVolume = 1f; // Between 0-1.0
+    [SerializeField] static public float globalSoundVolume = 1f;
 
     static public bool isMusicMuted;
     static public bool isSoundMuted;
     
     [SerializeField] public AudioSource backgroundMusic;
-    [SerializeField] private float volumeRampDuration = 1f; // For Music
+    [SerializeField] private float volumeRampDuration = 1f;
 
     private string currentSceneName = "";
     private Coroutine volumeRampCoroutine;
 
-    // Singleton Design Pattern
     private void Awake()
     {
         if(Instance != null)
@@ -44,7 +43,6 @@ public class SoundManager : MonoBehaviour
     // Update
     void Update()
     {
-        // If scene change happens handle changing background music
         string gottenSceneName = SceneManager.GetActiveScene().name;
 
         if(lastKnownGlobalMusicVolume != globalMusicVolume)
@@ -68,7 +66,6 @@ public class SoundManager : MonoBehaviour
             return;
         }
         
-        // Get music clip from music library
         AudioClip newMusicClip = musicLibrary.GetClipFromName(sceneName);
         
         if (newMusicClip == null)
@@ -76,7 +73,6 @@ public class SoundManager : MonoBehaviour
             return;
         }
         
-        // If the new clip is the same as currently playing return
         if (backgroundMusic.clip == newMusicClip)
         {
             float tv = musicLibrary.GetVolumeFromName(sceneName) * globalMusicVolume;
@@ -84,19 +80,16 @@ public class SoundManager : MonoBehaviour
             return;
         }
         
-        // Stop any existing coroutines
         if (volumeRampCoroutine != null)
         {
             StopCoroutine(volumeRampCoroutine);
         }
         
-        // Change the background music
         backgroundMusic.clip = newMusicClip;
         backgroundMusic.loop = true;
         backgroundMusic.volume = 0f;
         backgroundMusic.Play();
         
-        // Start coroutine to turn of volume slowly
         float targetVolume = musicLibrary.GetVolumeFromName(sceneName) * globalMusicVolume;
         backgroundMusic.volume = targetVolume;
     }
@@ -122,24 +115,19 @@ public class SoundManager : MonoBehaviour
             return;
         }
         
-        // Create a temporary GameObject with an AudioSource
         GameObject tempAudioObject = new GameObject($"TempAudio_{soundName}");
         AudioSource tempAudioSource = tempAudioObject.AddComponent<AudioSource>();
         
-        // Configure the AudioSource
         tempAudioSource.clip = clip;
         tempAudioSource.playOnAwake = false;
         tempAudioSource.spatialBlend = 0f;
         tempAudioSource.volume = soundLibrary.GetVolumeFromName(soundName) * globalSoundVolume;
         
-        // Play the sound
         tempAudioSource.Play();
         
-        // Start coroutine to destroy the object after the clip finishes
         StartCoroutine(DestroyAfterClipFinishes(tempAudioObject, clip.length));
     }
     
-    // Destroy sound effect game object after sound is done
     private IEnumerator DestroyAfterClipFinishes(GameObject audioObject, float clipLength)
     {
         yield return new WaitForSeconds(clipLength);
@@ -167,14 +155,18 @@ public class SoundManager : MonoBehaviour
 
     public void DecreaseSoundVolume()
     {
-        if(globalSoundVolume >= 0.1f)
+        if(globalSoundVolume > 0.0f)
             globalSoundVolume -= 0.1f;
+        if(globalSoundVolume < 0.0f)
+            globalSoundVolume = 0.0f;
     }
 
     public void IncreaseSoundVolume()
     {
-        if(globalSoundVolume <= 0.9f)
+        if(globalSoundVolume < 1.0f)
             globalSoundVolume += 0.1f;
+        if(globalSoundVolume > 1.0f)
+            globalSoundVolume = 1.0f;
     }
 
     public void MuteMusicVolume()

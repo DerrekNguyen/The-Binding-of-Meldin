@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+// Handles displaying corresponding audio text visuals
+
 [RequireComponent(typeof(TMP_Text))]
 public class NewBehaviourScript : MonoBehaviour
 {
     [SerializeField] private bool isMusicText;
 
-    // Reference to this GameObject's Text component
     private TMP_Text volumeText;
 
     void Awake()

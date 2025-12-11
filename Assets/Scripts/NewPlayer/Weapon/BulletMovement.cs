@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Handles player bullet movement
 public class BulletMovement : MonoBehaviour
 {
     private Vector2 _direction;
@@ -17,7 +18,6 @@ public class BulletMovement : MonoBehaviour
     {
         if (InGameUiManager.isPaused) return;
         
-        // Update lifetime timer (only when not paused)
         elapsedTime += Time.deltaTime;
         if (elapsedTime >= lifetime)
         {
@@ -25,10 +25,8 @@ public class BulletMovement : MonoBehaviour
             return;
         }
         
-        // Calculate movement distance this frame
         float moveDistance = _speed * Time.deltaTime;
         
-        // Raycast to check for walls before moving
         RaycastHit2D hit = Physics2D.Raycast(transform.position, _direction, moveDistance);
         
         if (hit.collider != null && hit.collider.CompareTag("Collision"))
@@ -37,7 +35,6 @@ public class BulletMovement : MonoBehaviour
             return;
         }
 
-        // Move arrow towards mouse direction
         transform.position += (Vector3)_direction * moveDistance;
     }
 }

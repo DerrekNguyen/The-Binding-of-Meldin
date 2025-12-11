@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Functions for audio ui buttons
+
 public class AudioButtonHelper : MonoBehaviour
 {
     public void ToggleMusicMute()
